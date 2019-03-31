@@ -3,7 +3,7 @@ import React from 'react';
 const navItem = (props) => {
 
   return (
-    <li >
+    <li className={props.classes} >
         {props.name}
     </li>
   )
