@@ -1,33 +1,26 @@
 import React, {Component} from 'react';
 
 import Aux from '../hoc/Aux'
-import Header from '../components/Header/Header'
+import Navigation from '../components/Navigation/Navigation'
+import SideNavigation from '../components/Navigation/SideNavigation'
 
 
 class Layout extends Component {
-  // state = {
-  //   showSideDraw: false
-  // }
-  //
-  // sideDrawClosedHandler = () => {
-  //   this.setState({
-  //     showSideDraw: false
-  //   })
-  // }
-  //
-  // sideDrawToggleHandler = () => {
-  //   this.setState( (prevState) => {
-  //     return {showSideDraw: !prevState.showSideDraw }
-  //   })
-  // }
+  state = {
+    showSideNav: false
+  }
 
-
+  toggleSideNavHandler = () => {
+    this.setState( (prevState) => {
+      return { showSideNav: !prevState.showSideNav }
+    })
+  }
 
   render() {
     return (
       <Aux>
-        <Header>
-        </Header>
+        <Navigation clicked={this.toggleSideNavHandler} open={this.state.showSideNav}/>
+        <SideNavigation open={this.state.showSideNav}/>
       </Aux>
     )
   }

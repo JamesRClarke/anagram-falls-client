@@ -1,1 +1,8 @@
-@import './Header/header.scss'
+// Header Components Styles
+@import './Header/header';
+
+
+// UI Components Styles
+@import './UI/backdrop';
+@import './UI/spinner';
+@import './UI/modal';

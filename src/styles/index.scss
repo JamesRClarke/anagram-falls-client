@@ -2,6 +2,8 @@
 @import '~bootstrap/scss/bootstrap-reboot.scss';
 @import url('https://fonts.googleapis.com/css?family=Oxygen:300,400,700');
 
+@import '_variables.scss';
+@import '_mixins.scss';
 
-@import 'base.scss';
+@import '_base.scss';
 @import './components/components.scss';

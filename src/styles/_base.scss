@@ -1,0 +1,48 @@
+* {
+  outline: 0;
+}
+
+
+html {
+  @include media-breakpoint-down(sm) {
+    @include rem(font-size, 12px);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include rem(font-size, 14px);
+  }
+}
+
+body {
+  @include rem(font-size, 18px);
+  color: $color-grey-dark;
+
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Oxygen', sans-serif;
+
+}
+
+h1, .h1 { @include rem(font-size, 36px); }
+h2, .h2 { @include rem(font-size, 30px); }
+h3, .h3 { @include rem(font-size, 24px); }
+h4, .h4 { @include rem(font-size, 18px); }
+h5, .h5 { @include rem(font-size, 12px); }
+
+.text-lg { @include rem(font-size, 24px); }
+.text-md { @include rem(font-size, 18px); }
+.text-sm { @include rem(font-size, 14px); }
+
+// Medium devices (tablets, 768px and up)
+@include media-breakpoint-up(md) {
+
+	h1, .h1 { @include rem(font-size, 46px); }
+	h2, .h2 { @include rem(font-size, 36px); }
+	h3, .h3 { @include rem(font-size, 30px); }
+	h4, .h4 { @include rem(font-size, 24px); }
+	h5, .h5 { @include rem(font-size, 18px); }
+
+	.text-lg { @include rem(font-size, 30px); }
+	.text-md { @include rem(font-size, 21px); }
+	.text-sm { @include rem(font-size, 16px); }
+
+}
