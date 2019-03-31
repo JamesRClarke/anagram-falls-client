@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import Aux from '../hoc/Aux'
-import Navigation from '../components/Header/Navigation'
+import Header from '../components/Header/Header'
 
 
 class Layout extends Component {
@@ -26,8 +26,8 @@ class Layout extends Component {
   render() {
     return (
       <Aux>
-        <Navigation>
-        </Navigation>
+        <Header>
+        </Header>
       </Aux>
     )
   }

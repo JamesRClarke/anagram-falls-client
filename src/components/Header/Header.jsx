@@ -2,15 +2,16 @@ import React from 'react';
 
 import NavItem from './NavItem/NavItem';
 
-const navigation = (props) => {
+const header = (props) => {
 
   return (
     <header>
+      <nav>
         <NavItem name="Home">
-
-      </NavItem>
+        </NavItem>
+      </nav>
     </header>
   )
 }
 
-export default navigation;
+export default header;
