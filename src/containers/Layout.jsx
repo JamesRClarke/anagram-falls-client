@@ -19,6 +19,7 @@ class Layout extends Component {
   }
 
   toggleSideNavHandler = () => {
+    console.log('triggered');
     this.setState( (prevState) => {
       return { showSideNav: !prevState.showSideNav }
     })
@@ -29,14 +30,14 @@ class Layout extends Component {
       <Aux>
         <Router>
           <Navigation clicked={this.toggleSideNavHandler} open={this.state.showSideNav}/>
-          <SideNavigation open={this.state.showSideNav}/>
-
+          <SideNavigation clicked={this.toggleSideNavHandler} open={this.state.showSideNav}/>
+          <main className="px-5 py-4 my-2 mx-3 mx-auto">
           <Route path="/game" component={Play}/>
           <Route path="/leaderboard" component={Leaderboards}/>
           <Route path="/about" component={About}/>
           <Route path="/register" component={Register}/>
           <Route path="/sign-in" component={SignIn}/>
-
+          </main>
         </Router>
       </Aux>
     )

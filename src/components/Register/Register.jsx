@@ -7,7 +7,7 @@ class Register extends Component {
   render() {
     return (
       <Aux>
-        <h1>Register Page</h1>
+        <h2>Register Page</h2>
       </Aux>
     )
   }

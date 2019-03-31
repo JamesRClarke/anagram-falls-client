@@ -5,9 +5,11 @@ import NavigationItems from './NavigationItems/NavigationItems';
 
 const navigation = (props) => {
   return (
-  <nav className={`sideNav d-md-none py-5 px-4 ${props.open ? `openNav` : `closeNav`}`}>
-    <NavigationItems sideNavigation={true}  />
-  </nav>
+    <header>
+      <nav className={`sideNav d-md-none py-5 px-4 ${props.open ? `openNav` : `closeNav`}`}>
+        <NavigationItems sideNavigation={true} clicked={props.clicked} />
+      </nav>
+    </header>
   )
 }
 

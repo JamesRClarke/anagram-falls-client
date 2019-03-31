@@ -45,6 +45,7 @@ const navigationItems = (props) => {
 
   const navLinks = navItems.map((item) =>
   <NavItem
+    clicked={props.clicked}
     order={item.order}
     name={item.name}
     link={item.link}

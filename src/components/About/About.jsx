@@ -7,7 +7,7 @@ class About extends Component {
   render() {
     return (
       <Aux>
-        <h1>About Page</h1>
+        <h2>About Page</h2>
       </Aux>
     )
   }

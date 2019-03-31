@@ -6,14 +6,14 @@ import BurgerMenu from './BurgerMenu/BurgerMenu';
 const navigation = (props) => {
   return (
     <header>
-      <nav className="px-5 pb-5 pt-4 d-flex justify-content-between align-items-center">
-          <div>
-            Home
+      <nav className="py-4 px-5 d-flex justify-content-between align-items-center">
+          <div className=" logo">
+            Logo
           </div>
 
           <NavigationItems show={props.open} sideNavigation={false}/>
 
-        <BurgerMenu clicked={props.clicked} open={props.open}/>
+        <BurgerMenu  clicked={props.clicked} open={props.open}/>
 
       </nav>
     </header>

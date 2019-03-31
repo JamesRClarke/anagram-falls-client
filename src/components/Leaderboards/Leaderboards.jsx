@@ -7,7 +7,7 @@ class Leaderboards extends Component {
   render() {
     return (
       <Aux>
-        <h1>Leaderboards Page</h1>
+        <h2>Leaderboards Page</h2>
       </Aux>
     )
   }
