@@ -8,27 +8,27 @@ const navigationItems = (props) => {
 
     {
       name: 'Play',
-      link: 'game',
+      link: '/game',
       order: 1
     },
     {
       name: 'Leaderboards',
-      link: 'leaderboard',
+      link: '/leaderboard',
       order: 2
     },
     {
       name: 'About',
-      link: 'about',
+      link: '/about',
       order: 3
     },
     {
       name: 'Register',
-      link: 'register',
+      link: '/register',
       order: 4
     },
     {
       name: 'Sign In',
-      link: 'sign-in',
+      link: '/sign-in',
       order: 5
     }
     // {
