@@ -3,17 +3,38 @@ nav {
 
   li {
     cursor: pointer;
-
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-    &.active, &:hover, &:focus  {
+    font-weight: 700;
+    position: relative;
+    a {
+      position: relative;
       text-decoration: none;
-      color: #72d476;
+      color: inherit;
+      &.active, &:hover, &:focus, {
+        text-decoration: none;
+        color: $color-green;
+      }
+      &:hover:after, &.active:after {
+        width: 100%;
+        left:0%;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        height: 4px;
+        background: $color-green;
+        bottom: -10px;
+        width: 0%;
+        left: 50%;
+        transition: all 400ms;
+        transition-timing-function: cubic-bezier(0.5, -0.5, 0.5, 1.5);
+        overflow: hidden;
+      }
+
     }
   }
+
+
 }
 
 
@@ -25,7 +46,7 @@ nav {
   .bar1, .bar2, .bar3 {
     width: 35px;
     height: 4px;
-    background-color: black;
+    background-color: #1F4E79;
     margin: 8px 0;
     transition: 0.5s;
   }
@@ -47,15 +68,14 @@ nav {
 
 .sideNav {
   position: fixed;
-  width: 100%;
-  max-width: 55%;
+  width: 300px;
+  max-width: 70%;
   height: 100%;
   right: 0;
   top: 0;
   z-index: 998;
-  background: #72d476;
+  background: #1F4E79;
   color: $color-white;
-  font-weight: 700;
   box-sizing: border-box;
   transition: transform 0.5s ease-out;
   @include rem(font-size, 20px);
