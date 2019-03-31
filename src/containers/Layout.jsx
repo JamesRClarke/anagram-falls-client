@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Aux from '../hoc/Aux'
+
 import Navigation from '../components/Navigation/Navigation'
 import SideNavigation from '../components/Navigation/SideNavigation'
+
+import About from '../components/About/About'
 
 
 class Layout extends Component {
@@ -19,8 +23,13 @@ class Layout extends Component {
   render() {
     return (
       <Aux>
-        <Navigation clicked={this.toggleSideNavHandler} open={this.state.showSideNav}/>
-        <SideNavigation open={this.state.showSideNav}/>
+        <Router>
+          <Navigation clicked={this.toggleSideNavHandler} open={this.state.showSideNav}/>
+          <SideNavigation open={this.state.showSideNav}/>
+
+          <Route path="/about" component={About}/>
+
+        </Router>
       </Aux>
     )
   }
