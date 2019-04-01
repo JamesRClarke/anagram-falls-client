@@ -30,7 +30,7 @@ class Layout extends Component {
         <Router>
           <Navigation clicked={this.toggleSideNavHandler} open={this.state.showSideNav}/>
           <SideNavigation clicked={this.toggleSideNavHandler} open={this.state.showSideNav}/>
-          <main className="px-5 py-4 my-2 mx-3 mx-auto">
+          <main className="my-5">
 
           <Route path="/game" component={Play}/>
           <Route path="/leaderboard" component={Leaderboards}/>

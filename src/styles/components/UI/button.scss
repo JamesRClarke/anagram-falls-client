@@ -1,0 +1,55 @@
+.btn {
+  cursor: pointer;
+  text-align: center;
+  max-width: 400px;
+  min-width: 250px;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 8px;
+  @include rem(font-size, 14px);
+  color: $color-white;
+  transition: all .4s ease-in;
+
+  &:hover {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  }
+
+  &.basic {
+    background: $color-blue;
+    &:hover {
+      background-color: $color-green;
+    }
+  }
+
+  &.github {
+    color: $color-black;
+    background: $color-white;
+    border: 1px solid $color-grey-dark;
+    &:hover {
+      background-color: $color-black;
+      color: $color-white;
+    }
+  }
+
+  &.google {
+    background: $color-google-red;
+    border: 1px solid $color-white;
+    &:hover {
+      background-color: $color-white;
+      color: $color-google-red;
+      border-color:$color-google-red;
+    }
+  }
+
+  &.facebook {
+    background: $color-facebook-blue;
+    border: 1px solid $color-white;
+    &:hover {
+      background-color: $color-white;
+      color: $color-facebook-blue;
+      border-color:$color-facebook-blue;
+    }
+  }
+
+}

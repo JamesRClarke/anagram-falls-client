@@ -3,11 +3,19 @@ import React, {Component} from 'react';
 
 
 import Input from '../components/UI/Input/Input';
+import Divider from '../components/UI/Divider/Divider';
+import Button from '../components/UI/Button/Button';
+import Oauth from '../components/Oauth/Oauth';
 import form from '../assets/formConfig.json';
 
 class Authentication extends Component {
+
+  checkForPage = () => {
+    return this.props.location.pathname.slice(1);
+  }
+
   state = {
-    formData: this.props.location.pathname === '/register' ?  {...form.register} : {...form.signIn},
+    formData: this.checkForPage() === 'register' ?  {...form.register} : {...form.signIn},
     formIsValid: false,
     formSubmission: false
   }
@@ -16,7 +24,6 @@ class Authentication extends Component {
     this.setState({
       formSubmission: true
     })
-    console.log(this.state);
     event.preventDefault();
     //   const formData = {};
     //
@@ -34,7 +41,6 @@ class Authentication extends Component {
   }
 
   checkValidity(value, rules) {
-    console.log('checkValidity');
     let isValid = true;
 
     if(!rules) {
@@ -88,6 +94,9 @@ class Authentication extends Component {
 
 
   render() {
+    const path = this.checkForPage();
+    let formClass = path === 'register' ? 'register' : 'signIn';
+
     const formElementsArray = [];
     for (let key in this.state.formData) {
       formElementsArray.push({
@@ -112,16 +121,31 @@ class Authentication extends Component {
       </div>
     )
     let form = (
-      <form onSubmit={this.sendForm}>
+      <form onSubmit={this.sendForm} className="w-100">
         {formInputs}
-        <button type="submit">Submit</button>
+        <Button class="btn basic" >Register</Button>
       </form>
     );
 
     return(
-      <div >
-        {form}
+      <div className="container">
+        <div className="row" >
+          <div className={`d-flex align-items-center justify-content-between flex-column col-12 col-md-5 ${formClass} text-center`}>
+            <h5 className="mb-4">Register an account...</h5>
+            {form}
+          </div>
 
+          <div className="my-3 my-md-0 py-3 px-4 p-md-0 col-12 col-md-2">
+            <Divider/>
+          </div>
+
+          <div className="col-12 col-md-5 d-flex align-items-center flex-column text-center">
+            <div className="w-100 ">
+              <h5 className="mb-4">Sign up with...</h5>
+              <Oauth />
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

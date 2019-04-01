@@ -8,6 +8,7 @@ nav {
     color: $color-white;
     letter-spacing: 1.2px;
     a {
+      @include rem(font-size, 12px);
       position: relative;
       text-decoration: none;
       color: inherit;
@@ -46,10 +47,10 @@ nav {
   transition: all 0.5s ease-out;
   z-index: 998;
   .bar1, .bar2, .bar3 {
-    width: 35px;
-    height: 4px;
+    width: 30px;
+    height: 3px;
     background-color: $color-white;
-    margin: 8px 0;
+    margin: 7px 0;
     transition: 0.5s ease-out;
   }
 
@@ -57,7 +58,7 @@ nav {
     div {background: $color-green;}
 
     div.bar1 {
-      transform: rotate(-45deg) translate(-8px, 7px);
+      transform: rotate(-45deg) translate(-6px, 6px);
     }
 
     div.bar2 {
@@ -65,14 +66,13 @@ nav {
     }
 
     div.bar3 {
-      transform: rotate(45deg) translate(-9px, -9px);
+      transform: rotate(45deg) translate(-8px, -8px);
     }
   }
 }
 
 .sideNav {
   opacity: 0.95;
-  @include rem(font-size, 25px);
   position: fixed;
   width: 100%;
   max-width:100%;
@@ -85,7 +85,9 @@ nav {
   box-sizing: border-box;
   transition: transform 0.55s ease-out;
   text-align: center;
-
+  a{
+    @include rem(font-size, 25px);
+  }
 }
 
 .openNav {

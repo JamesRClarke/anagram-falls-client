@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './Input.css';
 
 const input = (props) => {
 let inputElement = null;
@@ -7,9 +6,6 @@ let validitiyClass = '';
 
 if(!props.valid && props.touched && props.value !== '') {
   validitiyClass  = 'invalid';
-  console.log('invalid');
-} else {
-  console.log('if');
 }
 
 switch (props.elementType) {
@@ -57,8 +53,8 @@ switch (props.elementType) {
 }
 
   return (
-    <div className={classes.Input}>
-      <label className={classes.Label}>{props.label}</label>
+    <div className="py-3 px-4" >
+      <label>{props.label}</label>
       {inputElement}
     </div>
   )
