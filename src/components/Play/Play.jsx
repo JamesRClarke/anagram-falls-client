@@ -7,7 +7,7 @@ class Play extends Component {
   render() {
     return (
       <Aux>
-        <h2>Play Page</h2>
+      <h1>Play page</h1>
       </Aux>
     )
   }

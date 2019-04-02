@@ -8,6 +8,7 @@ import SideNavigation from '../components/Navigation/SideNavigation'
 import Authentication from './Authentication'
 
 
+import Home from '../components/Home/Home'
 import Play from '../components/Play/Play'
 import Leaderboards from '../components/Leaderboards/Leaderboards'
 import About from '../components/About/About'
@@ -32,6 +33,7 @@ class Layout extends Component {
           <SideNavigation clicked={this.toggleSideNavHandler} open={this.state.showSideNav}/>
           <main className="my-5">
 
+          <Route path="/" exact component={Home}/>
           <Route path="/game" component={Play}/>
           <Route path="/leaderboard" component={Leaderboards}/>
           <Route path="/about" component={About}/>

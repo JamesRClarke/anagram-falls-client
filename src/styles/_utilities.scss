@@ -12,3 +12,29 @@
 .text-right {
   text-align: right;
 }
+
+
+.status-box {
+  max-width: 100%;
+  background: $color-white;
+  box-shadow: 0 0px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.inline-text-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+
+  &.active {
+    color: $color-green;
+  }
+
+  &:hover {
+    color: $color-green;
+    text-decoration: none;
+  }
+
+
+
+}

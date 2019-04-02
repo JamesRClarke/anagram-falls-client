@@ -25,19 +25,6 @@ class Authentication extends Component {
       formSubmission: true
     })
     event.preventDefault();
-    //   const formData = {};
-    //
-    //   for (let formElementIdentifirer in this.state.formData) {
-    //   formData[formElementIdentifirer] = this.state.formData[formElementIdentifirer].value
-    //   }
-    //
-    //   const order = {
-    //     ingredients: this.props.ings,
-    //     price: this.props.price,
-    //     orderData: formData
-    //   }
-    //
-    //   this.props.onOrderBurger(order);
   }
 
   checkValidity(value, rules) {

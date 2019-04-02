@@ -7,7 +7,7 @@ const navigationItems = (props) => {
   const navItems  = [
 
     {
-      name: 'Play',
+      name: 'Lets Play!',
       link: '/game',
       order: 1
     },
@@ -17,7 +17,7 @@ const navigationItems = (props) => {
       order: 2
     },
     {
-      name: 'About',
+      name: 'How do I play ?',
       link: '/about',
       order: 3
     },
