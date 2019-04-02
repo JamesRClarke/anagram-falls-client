@@ -128,7 +128,7 @@ class Authentication extends Component {
     let form = (
       <form onSubmit={this.sendForm} className="w-100">
         {formInputs}
-        <Button class="btn basic" >Register</Button>
+        <Button class="btn basic" >{authTitles[path].replace(/ .*/,'')}</Button>
       </form>
     );
 
