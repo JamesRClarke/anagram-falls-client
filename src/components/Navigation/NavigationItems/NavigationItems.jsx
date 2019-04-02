@@ -28,7 +28,7 @@ const navigationItems = (props) => {
     },
     {
       name: 'Sign In',
-      link: '/sign-in',
+      link: '/login',
       order: 5
     }
     // {

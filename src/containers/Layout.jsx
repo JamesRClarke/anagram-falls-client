@@ -36,7 +36,7 @@ class Layout extends Component {
           <Route path="/leaderboard" component={Leaderboards}/>
           <Route path="/about" component={About}/>
           <Route path="/register" component={Authentication}/>
-          <Route path="/sign-in" component={Authentication}/>
+          <Route path="/login" component={Authentication}/>
           </main>
         </Router>
       </Aux>

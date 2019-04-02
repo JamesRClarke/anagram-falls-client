@@ -95,7 +95,12 @@ class Authentication extends Component {
 
   render() {
     const path = this.checkForPage();
-    let formClass = path === 'register' ? 'register' : 'signIn';
+    let formClass = path === 'register' ? 'register' : 'login';
+
+    const authTitles = {
+      register: 'Register an',
+      login: 'Login to your'
+    }
 
     const formElementsArray = [];
     for (let key in this.state.formData) {
@@ -131,7 +136,7 @@ class Authentication extends Component {
       <div className="container">
         <div className="row" >
           <div className={`d-flex align-items-center justify-content-between flex-column col-12 col-md-5 ${formClass} text-center`}>
-            <h5 className="mb-4">Register an account...</h5>
+            <h5 className="mb-4">{authTitles[path]} account...</h5>
             {form}
           </div>
 
@@ -141,7 +146,7 @@ class Authentication extends Component {
 
           <div className="col-12 col-md-5 d-flex align-items-center flex-column text-center">
             <div className="w-100 ">
-              <h5 className="mb-4">Sign up with...</h5>
+              <h5 className="mb-4">{authTitles[path]} account with...</h5>
               <Oauth />
             </div>
           </div>
