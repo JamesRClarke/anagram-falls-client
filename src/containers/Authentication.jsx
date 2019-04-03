@@ -64,9 +64,8 @@ class Authentication extends Component {
 
     updatedFormElement.touched = true; // input has been touched
 
-    if(this.state.formSubmission && updatedFormElement[inputIdentifier] !== 'password') {
-      updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation); //validate input
-    }
+    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation); //validate input
+
 
     let formIsValid = true;
     for (let inputIdentifier in updatedOrderForm) {
@@ -100,6 +99,7 @@ class Authentication extends Component {
       <div>
         {formElementsArray.map(formElement => (
           <Input
+            formSubmission={this.state.formSubmission}
             key={formElement.id}
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}

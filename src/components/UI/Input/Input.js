@@ -1,56 +1,58 @@
 import React from 'react';
 
 const input = (props) => {
-let inputElement = null;
-let validitiyClass = '';
+  let inputElement = null;
+  let validitiyClass = '';
 
-if(!props.valid && props.touched && props.value !== '') {
-  validitiyClass  = 'invalid';
-}
+  if (props.formSubmission) {
+    if(!props.valid && props.touched && props.value !== '' && props.shouldValidate) {
+      validitiyClass  = 'invalid';
+    }
+  }
 
-switch (props.elementType) {
+  switch (props.elementType) {
 
-  case ('input'):
-  inputElement = <input
-    className={validitiyClass}
-     {...props.elementConfig}
-     value={props.value}
-     onChange={props.changed}
-      />
-  break;
-
-  case ('textarea'):
-  inputElement = <textarea
-    {...props.elementConfig}
-    value={props.value}
-    onChange={props.changed}
-     />
-  break;
-
-  case ('select'):
-  inputElement = (
-    <select
+    case ('input'):
+    inputElement = <input
+      className={validitiyClass}
+      {...props.elementConfig}
       value={props.value}
       onChange={props.changed}
-       >
-    {props.elementConfig.options.map(option => (
-      <option
-        key={option.value}
-        value={option.value}>
-        {option.displayValue}
-      </option>
-    ))}
-    </select>
-  )
-  break;
+      />
+    break;
 
-  default:
-  inputElement = <input
-    {...props.elementConfig}
-    value={props.value}
-    onChange={props.changed}
-    />
-}
+    case ('textarea'):
+    inputElement = <textarea
+      {...props.elementConfig}
+      value={props.value}
+      onChange={props.changed}
+      />
+    break;
+
+    case ('select'):
+    inputElement = (
+      <select
+        value={props.value}
+        onChange={props.changed}
+        >
+        {props.elementConfig.options.map(option => (
+          <option
+            key={option.value}
+            value={option.value}>
+            {option.displayValue}
+          </option>
+        ))}
+      </select>
+    )
+    break;
+
+    default:
+    inputElement = <input
+      {...props.elementConfig}
+      value={props.value}
+      onChange={props.changed}
+      />
+  }
 
   return (
     <div className="py-3 px-4" >
