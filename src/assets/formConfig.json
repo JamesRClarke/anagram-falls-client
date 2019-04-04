@@ -37,7 +37,8 @@
         },
         "value": "" ,
         "validation": {
-          "required": true
+          "required": true,
+          "minLength": 2
         },
         "valid": false,
         "touched": false
@@ -77,7 +78,8 @@
         "value": "" ,
         "validation": {
           "required": true,
-          "minLength": 8
+          "regEx": "/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/"
+
         },
         "valid": false,
         "touched": false

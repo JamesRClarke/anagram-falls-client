@@ -5,3 +5,7 @@ input {
   max-width: 400px;
   width: 100%;
 }
+
+.input-error {
+  color: $color-error;
+}

@@ -1,28 +1,39 @@
 import React from 'react';
+import InputError from './InputError/InputError'
 
 const input = (props) => {
   let inputElement = null;
   let validitiyClass = '';
+  let errorMessage = null;
 
   if (props.formSubmission) {
-    if(!props.valid && props.touched && props.value !== '' && props.shouldValidate) {
+    if(!props.valid && props.shouldValidate && props.value !== ' ') {
+      console.log('triggered');
       validitiyClass  = 'invalid';
+      errorMessage = <InputError>{props.errorMessage}</InputError>
     }
   }
 
   switch (props.elementType) {
 
     case ('input'):
-    inputElement = <input
-      className={validitiyClass}
-      {...props.elementConfig}
-      value={props.value}
-      onChange={props.changed}
-      />
+    inputElement =
+    (
+      <div>
+        <input
+          className={validitiyClass}
+          {...props.elementConfig}
+          value={props.value}
+          onChange={props.changed}
+          />
+        {errorMessage}
+      </div>
+    )
     break;
 
     case ('textarea'):
     inputElement = <textarea
+      className={validitiyClass}
       {...props.elementConfig}
       value={props.value}
       onChange={props.changed}
@@ -32,6 +43,7 @@ const input = (props) => {
     case ('select'):
     inputElement = (
       <select
+        className={validitiyClass}
         value={props.value}
         onChange={props.changed}
         >
@@ -48,12 +60,12 @@ const input = (props) => {
 
     default:
     inputElement = <input
+      className={validitiyClass}
       {...props.elementConfig}
       value={props.value}
       onChange={props.changed}
       />
   }
-
   return (
     <div className="py-3 px-4" >
       <label>{props.label}</label>

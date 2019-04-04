@@ -29,13 +29,13 @@ class Authentication extends Component {
 
   checkValidity(value, rules) {
     let isValid = true;
-
     if(!rules) {
       return true
     }
 
     if (rules.required) {
       isValid = value.trim() !== '' && isValid;
+
     }
 
     if (rules.minLength) {
@@ -46,7 +46,28 @@ class Authentication extends Component {
       isValid = value.length <= rules.maxLength && isValid;
     }
 
-    return isValid
+    return isValid;
+  }
+
+  getErrorMessage(value, rules, element) {
+    let errorMessage = '';
+    let inputName = element.elementConfig.placeholder;
+    if (rules.required && Object.keys(rules).length <= 1) {
+      console.log('if');
+      errorMessage = `Please provide a ${inputName}`;
+    } else {
+      console.log('else');
+      if (rules.regEx) {
+        errorMessage = !value.match(rules.regEx) ? `${inputName} needs to have atleast one special character, one uppercase character.` : null;
+      }
+      if (rules.minLength) {
+        console.log('minLength');
+        errorMessage = value.length < rules.minLength ? `${inputName} needs to be longer than ${rules.minLength} characters` : null;
+      }
+    }
+
+    return errorMessage;
+
   }
 
 
@@ -61,11 +82,11 @@ class Authentication extends Component {
     updatedFormElement.value = event.target.value; // change value
     updatedOrderForm[inputIdentifier] = updatedFormElement; //store in new object
 
-
     updatedFormElement.touched = true; // input has been touched
 
-    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation); //validate input
+      updatedFormElement.valid  = this.checkValidity(updatedFormElement.value, updatedFormElement.validation); //validate input
 
+      updatedFormElement.error = this.getErrorMessage(updatedFormElement.value, updatedFormElement.validation, updatedFormElement);
 
     let formIsValid = true;
     for (let inputIdentifier in updatedOrderForm) {
@@ -92,7 +113,8 @@ class Authentication extends Component {
     for (let key in this.state.formData) {
       formElementsArray.push({
         id: key,
-        config: this.state.formData[key]
+        config: this.state.formData[key],
+        error: this.getErrorMessage(this.state.formData[key].value, this.state.formData[key].validation, this.state.formData[key])
       })
     }
     let formInputs = (
@@ -105,6 +127,7 @@ class Authentication extends Component {
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
             valid={formElement.config.valid}
+            errorMessage={formElement.error}
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
             changed={(event) => this.inputChangedHandler(event, formElement.id)}
