@@ -5,13 +5,18 @@ import Aux from '../../../hoc/Aux'
 import InputError from './InputError/InputError'
 
 const input = (props) => {
+  console.log(props);
   let inputElement = null;
   let validitiyClass = '';
+  let hasContent = '';
   let errorMessage = <InputError></InputError>;
   let passowordStrengthChecker = null
 
   if (props) {
     passowordStrengthChecker  = true;
+  }
+  if (props.value.length >= 1) {
+    hasContent = 'has-content'
   }
 
     if(!props.valid && props.shouldValidate && props.value !== '') {
@@ -27,17 +32,20 @@ const input = (props) => {
     case ('input'):
     inputElement =
     (
-      <Aux>
+      <div className="input-effect ">
         <input
-          className={validitiyClass}
+          className={`effect-18 ${validitiyClass}`}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
           />
-        {passowordStrengthChecker}
+        <label className={hasContent}>{props.label}</label>
+        <span className="focus-border"></span>
+        <div>
         {errorMessage}
+        </div>
 
-      </Aux>
+      </div >
     )
     break;
 
@@ -78,7 +86,6 @@ const input = (props) => {
   }
   return (
     <div className="py-3 px-4">
-      <label>{props.label}</label>
       {inputElement}
     </div>
   )

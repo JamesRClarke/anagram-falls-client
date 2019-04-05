@@ -2,9 +2,9 @@
   "signIn": {
       "email": {
         "elementType": "input",
+        "label": "Your email",
         "elementConfig": {
-          "type": "email",
-          "placeholder": "Your email"
+          "type": "email"
         },
         "value": "" ,
         "error": "",
@@ -16,9 +16,9 @@
       },
       "password": {
         "elementType": "input",
+        "label": "Your password",
         "elementConfig": {
-          "type": "password",
-          "placeholder": "Your password"
+          "type": "password"
         },
         "value": "" ,
         "error": "",
@@ -33,9 +33,9 @@
   "register": {
       "firstName": {
         "elementType": "input",
+        "label": "First Name",
         "elementConfig": {
-          "type": "text",
-          "placeholder": "First Name"
+          "type": "text"
         },
         "value": "" ,
         "error": "",
@@ -48,9 +48,9 @@
       },
       "lastName": {
         "elementType": "input",
+        "label": "Last Name",
         "elementConfig": {
-          "type": "text",
-          "placeholder": "Last Name"
+          "type": "text"
         },
         "value": "" ,
         "error": "",
@@ -62,9 +62,9 @@
       },
       "email": {
         "elementType": "input",
+        "label": "Your email",
         "elementConfig": {
-          "type": "email",
-          "placeholder": "Your email"
+          "type": "email"
         },
         "value": "" ,
         "error": "",
@@ -77,9 +77,9 @@
       },
       "password": {
         "elementType": "input",
+        "label": "Your password",
         "elementConfig": {
-          "type": "password",
-          "placeholder": "Your password"
+          "type": "password"
         },
         "value": "" ,
         "error": "",

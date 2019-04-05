@@ -48,37 +48,12 @@ class Authentication extends Component {
       isValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value) && isValid;
       errorMessage = isValid ? '' : `Please enter a valid email address.`;
     }
+    if (rules.regExp && inputIdentifier === 'password') {
+      isValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value) && isValid;
+      errorMessage = isValid ? '' : `Minimum eight characters, at least one uppercase, one number and one special character.`;
+    }
     return [isValid, errorMessage];
   }
-
-  // getErrorMessage(value, rules, element) {
-  //   let inputName = element.elementConfig.placeholder;
-  //
-  //   // let checkForRegExp = () => {
-  //   //   let regExp;
-  //   //   if (inputName === 'email') {
-  //   //     regExp = new RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)
-  //   //     errorMessage = regExp.test(value) ? '' : 'Please enter a valid email address.';
-  //   //
-  //   //   } else {
-  //   //     console.log('triggered');
-  //   //     regExp =(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
-  //   //     errorMessage = regExp.test(value) ? '' : 'Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character';
-  //   //
-  //   //   }
-  //   //   return errorMessage;
-  //   // }
-  //
-  //   let errorMessage = rules.required ? `Please provide a ${inputName}` : '';
-  //
-  //   // if (rules.regExp) {
-  //   //   errorMessage = checkForRegExp();
-  //   // }
-  //
-  //   return errorMessage;
-  // }
-
-
 
   inputChangedHandler = (event, inputIdentifier) => {
     const updatedOrderForm = {
@@ -128,6 +103,7 @@ class Authentication extends Component {
         {formElementsArray.map(formElement => (
           <Input
             key={formElement.id}
+            label={formElement.config.label}
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
