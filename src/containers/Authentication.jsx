@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 // import {withRouter} from 'react-router-dom';
 
+import Aux from '../hoc/Aux'
+
 
 import Input from '../components/UI/Input/Input';
 import Divider from '../components/UI/Divider/Divider';
@@ -16,8 +18,7 @@ class Authentication extends Component {
 
   state = {
     formData: this.checkForPage() === 'register' ?  {...form.register} : {...form.signIn},
-    formIsValid: false,
-    formSubmission: false
+    formIsValid: false
   }
 
   sendForm = ( event ) => {
@@ -27,48 +28,56 @@ class Authentication extends Component {
     event.preventDefault();
   }
 
-  checkValidity(value, rules) {
+  checkValidity(value, rules, inputIdentifier) {
     let isValid = true;
+    let errorMessage = '';
+
     if(!rules) {
       return true
     }
-
     if (rules.required) {
       isValid = value.trim() !== '' && isValid;
-
     }
-
     if (rules.minLength) {
       isValid = value.length >= rules.minLength && isValid;
     }
-
     if (rules.maxLength) {
       isValid = value.length <= rules.maxLength && isValid;
     }
-
-    return isValid;
-  }
-
-  getErrorMessage(value, rules, element) {
-    let errorMessage = '';
-    let inputName = element.elementConfig.placeholder;
-    if (rules.required && Object.keys(rules).length <= 1) {
-      console.log('if');
-      errorMessage = `Please provide a ${inputName}`;
-    } else {
-      console.log('else');
-      if (rules.regEx) {
-        errorMessage = !value.match(rules.regEx) ? `${inputName} needs to have atleast one special character, one uppercase character.` : null;
-      }
-      if (rules.minLength) {
-        console.log('minLength');
-        errorMessage = value.length < rules.minLength ? `${inputName} needs to be longer than ${rules.minLength} characters` : null;
-      }
+    if (rules.regExp && inputIdentifier === 'email') {
+      isValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value) && isValid;
+      errorMessage = isValid ? '' : `Please enter a valid email address.`;
     }
-
-    return errorMessage;
-
+    return [isValid, errorMessage];
   }
+
+  // getErrorMessage(value, rules, element) {
+  //   let inputName = element.elementConfig.placeholder;
+  //
+  //   // let checkForRegExp = () => {
+  //   //   let regExp;
+  //   //   if (inputName === 'email') {
+  //   //     regExp = new RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)
+  //   //     errorMessage = regExp.test(value) ? '' : 'Please enter a valid email address.';
+  //   //
+  //   //   } else {
+  //   //     console.log('triggered');
+  //   //     regExp =(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
+  //   //     errorMessage = regExp.test(value) ? '' : 'Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character';
+  //   //
+  //   //   }
+  //   //   return errorMessage;
+  //   // }
+  //
+  //   let errorMessage = rules.required ? `Please provide a ${inputName}` : '';
+  //
+  //   // if (rules.regExp) {
+  //   //   errorMessage = checkForRegExp();
+  //   // }
+  //
+  //   return errorMessage;
+  // }
+
 
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -84,9 +93,7 @@ class Authentication extends Component {
 
     updatedFormElement.touched = true; // input has been touched
 
-      updatedFormElement.valid  = this.checkValidity(updatedFormElement.value, updatedFormElement.validation); //validate input
-
-      updatedFormElement.error = this.getErrorMessage(updatedFormElement.value, updatedFormElement.validation, updatedFormElement);
+    [updatedFormElement.valid, updatedFormElement.error]  = this.checkValidity(updatedFormElement.value, updatedFormElement.validation, inputIdentifier); //validate input
 
     let formIsValid = true;
     for (let inputIdentifier in updatedOrderForm) {
@@ -113,30 +120,28 @@ class Authentication extends Component {
     for (let key in this.state.formData) {
       formElementsArray.push({
         id: key,
-        config: this.state.formData[key],
-        error: this.getErrorMessage(this.state.formData[key].value, this.state.formData[key].validation, this.state.formData[key])
+        config: this.state.formData[key]
       })
     }
     let formInputs = (
-      <div>
+      <Aux>
         {formElementsArray.map(formElement => (
           <Input
-            formSubmission={this.state.formSubmission}
             key={formElement.id}
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
             valid={formElement.config.valid}
-            errorMessage={formElement.error}
+            errorMessage={formElement.config.error}
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
             changed={(event) => this.inputChangedHandler(event, formElement.id)}
             />
         ))}
-      </div>
+      </Aux>
     )
     let form = (
-      <form onSubmit={this.sendForm} className="w-100">
+      <form noValidate onSubmit={this.sendForm} className="w-100">
         {formInputs}
         <Button class="btn basic" >{authTitles[path].replace(/ .*/,'')}</Button>
       </form>

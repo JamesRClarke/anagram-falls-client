@@ -1,33 +1,43 @@
 import React from 'react';
+
+import Aux from '../../../hoc/Aux'
+
 import InputError from './InputError/InputError'
 
 const input = (props) => {
   let inputElement = null;
   let validitiyClass = '';
-  let errorMessage = null;
+  let errorMessage = <InputError></InputError>;
+  let passowordStrengthChecker = null
 
-  if (props.formSubmission) {
-    if(!props.valid && props.shouldValidate && props.value !== ' ') {
-      console.log('triggered');
+  if (props) {
+    passowordStrengthChecker  = true;
+  }
+
+    if(!props.valid && props.shouldValidate && props.value !== '') {
       validitiyClass  = 'invalid';
       errorMessage = <InputError>{props.errorMessage}</InputError>
+    } else if (props.valid){
+      validitiyClass = 'valid';
     }
-  }
+
 
   switch (props.elementType) {
 
     case ('input'):
     inputElement =
     (
-      <div>
+      <Aux>
         <input
           className={validitiyClass}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
           />
+        {passowordStrengthChecker}
         {errorMessage}
-      </div>
+
+      </Aux>
     )
     break;
 
@@ -67,7 +77,7 @@ const input = (props) => {
       />
   }
   return (
-    <div className="py-3 px-4" >
+    <div className="py-3 px-4">
       <label>{props.label}</label>
       {inputElement}
     </div>

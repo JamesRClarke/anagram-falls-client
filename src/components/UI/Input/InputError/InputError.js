@@ -1,11 +1,13 @@
 import React from 'react';
 
+import Aux from '../../../../hoc/Aux'
+
 const inputError = (props) => {
 
   return (
-    <div className="py-3 px-4 input-error" >
-      <p>{props.children}</p>
-    </div>
+    <Aux >
+      <p className="input-error" >{props.children}</p>
+    </Aux>
   )
 };
 

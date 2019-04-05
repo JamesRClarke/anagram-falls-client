@@ -2,5 +2,8 @@ input {
     &.invalid {
       border-color: $color-error;
     }
+    &.valid {
+      border-color: $color-green;
+    }
 
 }
