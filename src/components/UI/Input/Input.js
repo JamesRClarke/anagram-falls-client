@@ -1,9 +1,10 @@
 import React from 'react';
 
+import Aux from '../../../hoc/Aux'
+
 import InputError from './InputError/InputError'
 
 const input = (props) => {
-  // console.log(props);
   let inputElement = null;
   let validitiyClass = '';
   let hasContent = '';
@@ -26,8 +27,8 @@ const input = (props) => {
       case ('input'):
       inputElement =
       (
-        <div>
-          <div className="input-effect ">
+        <div className="p-4">
+          <div className="input-effect">
             <input
               className={`effect-18 ${validitiyClass}`}
               {...props.elementConfig}
@@ -80,9 +81,9 @@ const input = (props) => {
         />
     }
     return (
-      <div className="py-3 px-4">
+      <Aux>
         {inputElement}
-      </div>
+      </Aux>
     )
   };
 
