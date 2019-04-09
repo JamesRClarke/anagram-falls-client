@@ -46,10 +46,12 @@ class Authentication extends Component {
     }
     if (rules.regExp && inputIdentifier === 'email') {
       isValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value) && isValid;
+
       errorMessage = isValid ? '' : `Please enter a valid email address.`;
     }
     if (rules.regExp && inputIdentifier === 'password') {
       isValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value) && isValid;
+
       errorMessage = isValid ? '' : `Minimum eight characters, at least one uppercase, one number and one special character.`;
     }
     return [isValid, errorMessage];
