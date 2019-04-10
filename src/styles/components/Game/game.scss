@@ -1,0 +1,20 @@
+.game-container {
+  height: 90vh;
+}
+
+.game-filters {
+  position: relative;
+  max-width: 100%;
+  background: $color-green;
+  border: 2px solid $color-blue;
+  height: 20%;
+}
+
+.game-box {
+  position: relative;
+  max-width: 100%;
+  background: $color-green;
+  border: 2px solid $color-blue;
+  height: 80%;
+
+}

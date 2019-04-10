@@ -9,7 +9,7 @@ import Authentication from './Authentication'
 
 
 import Home from '../components/Home/Home'
-import Play from '../components/Play/Play'
+import Game from '../components/Game/Game'
 import Leaderboards from '../components/Leaderboards/Leaderboards'
 import About from '../components/About/About'
 
@@ -34,7 +34,7 @@ class Layout extends Component {
           <main className="my-5">
 
           <Route path="/" exact component={Home}/>
-          <Route path="/game" component={Play}/>
+          <Route path="/game" component={Game}/>
           <Route path="/leaderboard" component={Leaderboards}/>
           <Route path="/about" component={About}/>
           <Route path="/register" component={Authentication}/>
