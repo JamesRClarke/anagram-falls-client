@@ -8,8 +8,8 @@ class Game extends Component {
 
   render() {
     return (
-      <Aux>
-        <div className="game-container">
+      <Aux >
+        <div className="game-container container">
           <GameFilters />
           <GameBox />
         </div>

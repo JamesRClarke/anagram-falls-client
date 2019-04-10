@@ -1,5 +1,5 @@
 .game-container {
-  height: 90vh;
+  height: 95vh;
 }
 
 .game-filters {
@@ -7,7 +7,7 @@
   max-width: 100%;
   background: $color-green;
   border: 2px solid $color-blue;
-  height: 20%;
+  height: 15%;
 }
 
 .game-box {
@@ -15,6 +15,23 @@
   max-width: 100%;
   background: $color-green;
   border: 2px solid $color-blue;
-  height: 80%;
+  height: 85%;
+
+  .game-answer {
+    position: absolute;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    background: red;
+    height: 10%;
+    text-align: center;
+
+    input {
+      max-width: 400px;
+      background: white;
+      color: $color-blue;
+      text-align: center;
+    }
+  }
 
 }
