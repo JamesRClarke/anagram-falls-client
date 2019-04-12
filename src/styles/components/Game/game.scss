@@ -3,7 +3,6 @@
 }
 
 .game-filters {
-  position: relative;
   max-width: 100%;
   background: $color-green;
   border: 2px solid $color-blue;
@@ -11,26 +10,33 @@
 }
 
 .game-box {
+  // overflow:hidden;
   position: relative;
   max-width: 100%;
-  background: $color-green;
-  border: 2px solid $color-blue;
+  background: lighten($color-green, 30%);
+  min-height: 750px;
   height: 85%;
+
+  .game-anagram {
+    position: absolute;
+    z-index: 999;
+    color: red;
+  }
 
   .game-answer {
     position: absolute;
     bottom: 0;
     left:0;
     width: 100%;
-    background: red;
     height: 10%;
     text-align: center;
 
     input {
-      max-width: 400px;
+      max-width: 350px;
       background: white;
       color: $color-blue;
       text-align: center;
+
     }
   }
 

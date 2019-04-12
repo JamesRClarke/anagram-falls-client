@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
-import Aux from '../../hoc/Aux'
-import  GameFilters from  './GameFilters/GameFilters';
-import  GameBox from './GameBox/GameBox';
+import Aux from '../hoc/Aux'
+import  GameFilters from  '../components/Game/GameFilters/GameFilters';
+import  GameBox from '../components/Game/GameBox/GameBox';
 
 class Game extends Component {
 
