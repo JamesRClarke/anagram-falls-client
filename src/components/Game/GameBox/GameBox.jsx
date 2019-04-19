@@ -4,9 +4,11 @@ import Aux from '../../../hoc/Aux';
 
 class GameBox extends Component {
   state = {
-    anagramPositionXY: null,
-    gameBoxHeight: null,
-    gameBoxWidth: null
+    gameBoxHeight: 0,
+    gameBoxWidth: 0,
+    anagrams: ['anagram one', 'anagram two', 'anagram three', 'anagram four'],
+    anagramComponents: [],
+    counter: 0
   }
 
   componentDidMount() {
@@ -18,6 +20,29 @@ class GameBox extends Component {
     })
   }
 
+  startIntervalHandler = () => {
+    let pushAnagram = () => {
+      let intervalId = null;
+      let counter = this.state.counter;
+      if (counter <= this.state.anagrams.length - 1) {
+        console.log('if');
+        let selectedAnagram = this.state.anagrams[counter];
+        let anagramComponents = this.state.anagramComponents;
+        anagramComponents.push(selectedAnagram);
+        this.setState({
+          anagramComponents: anagramComponents,
+          counter: counter + 1
+        })
+      } else {
+        console.log('else');
+        clearInterval(intervalId);
+      }
+    }
+
+    setInterval(pushAnagram, 5000);
+  }
+
+
 
 render() {
 
@@ -27,14 +52,12 @@ render() {
 
       <div ref={ (gameBox) => this.gameBox = gameBox} className="my-3 game-box">
 
-        <Anagram
-          anagram="Here I Am"
-          playingHeight={this.state.gameBoxHeight}
-          playingWidth={this.state.gameBoxWidth}
-          />
+        {this.state.anagramComponents.map((component) => {
+          return <Anagram anagram={component} key={component} playingWidth={this.state.gameBoxWidth} playingHeight={this.state.gameBoxHeight} />
+        })}
 
         <div ref={ (inputBox) => this.inputBox = inputBox} className="game-answer d-flex justify-content-center align-items-center">
-          <input type="text"  />
+          <input ref={ (inputBox) => this.inputBox = inputBox} type="text"  />
         </div>
 
       </div>

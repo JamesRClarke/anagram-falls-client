@@ -1,40 +1,45 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 
 class Anagram extends Component {
   constructor(props) {
     super(props);
-    state = {
+    this.state = {
       anagramPosTop: -35,
-      anagramPosXY: createRandomXYPos()
+      anagramPosXY:  Math.ceil((Math.random() * (this.props.playingWidth - 80)))
     }
   }
-  
-  createRandomXYPos = () => {
-    return Math.ceil((Math.random() * (props.playingWidth - 80)));
+
+  componentDidMount() {
+    let intervalId;
+    let moveAnagram = () => {
+      if(this.state.anagramPosTop <= this.props.playingHeight) {
+        this.setState({
+          anagramPosTop: this.state.anagramPosTop + 10
+        })
+      } else {
+        clearInterval(intervalId);
+      }
+    };
+
+    setInterval(moveAnagram, 1000);
   }
 
+  render() {
+    console.log(this.state.anagramPosXY);
+    return (
+      <div >
+        <p
+          className="game-anagram"
+          style={{
+            top: `${this.state.anagramPosTop}px`,
+            left: `${this.state.anagramPosXY}px`}}>
+          {this.props.anagram}
+        </p>
+      </div>
+    )
 
-  let intervalId;
-  let moveAnagram = () => {
-    if(anagramPosTop <= props.playingHeight) {
-      return anagramPosTop = anagramPosTop + 5;
-
-    } else {
-      clearInterval(intervalId);
-    }
-  };
-  setInterval(moveAnagram, 500);
-
-  return (
-    <div >
-      <p
-        className="game-anagram"
-        style={{top: `${anagramPosTop}px`, left: `${anagramPosXY}px`}}>
-        {props.anagram}
-      </p>
-    </div>
-  )
+  }
 }
 
-export default anagram
+export default Anagram
