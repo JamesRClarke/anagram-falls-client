@@ -6,7 +6,7 @@ class GameBox extends Component {
   state = {
     gameBoxHeight: 0,
     gameBoxWidth: 0,
-    anagrams: ['anagram one', 'anagram two', 'anagram three', 'anagram four'],
+    anagrams: ['anagram one', 'anagram two', 'anagram three', 'anagram four', 'anagram five', 'anagram six', 'anagram seven', 'anagram eight'],
     anagramComponents: [],
     counter: 0
   }
@@ -21,6 +21,7 @@ class GameBox extends Component {
   }
 
   startIntervalHandler = () => {
+
     let pushAnagram = () => {
       let intervalId = null;
       let counter = this.state.counter;
@@ -38,8 +39,7 @@ class GameBox extends Component {
         clearInterval(intervalId);
       }
     }
-
-    setInterval(pushAnagram, 5000);
+    setInterval(pushAnagram, 10000);
   }
 
 

@@ -6,7 +6,7 @@ class Anagram extends Component {
     super(props);
     this.state = {
       anagramPosTop: -35,
-      anagramPosXY:  Math.ceil((Math.random() * (this.props.playingWidth - 80)))
+      anagramPosXY:  Math.ceil((Math.random() * (this.props.playingWidth - 20)))
     }
   }
 
@@ -26,7 +26,6 @@ class Anagram extends Component {
   }
 
   render() {
-    console.log(this.state.anagramPosXY);
     return (
       <div >
         <p
