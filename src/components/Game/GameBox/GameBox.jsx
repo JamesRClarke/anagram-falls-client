@@ -7,7 +7,7 @@ class GameBox extends Component {
   state = {
     gameBoxHeight: 0,
     gameBoxWidth: 0,
-    anagrams: ['anagram one', 'anagram two', 'anagram three', 'anagram four', 'anagram five', 'anagram six', 'anagram seven', 'anagram eight'],
+    anagrams: ['anagram reference test'],
     anagramComponents: [],
     counter: 0,
     countdown: 5,
@@ -62,19 +62,20 @@ class GameBox extends Component {
   }
 
   anagramChecker = (event) => {
+    console.log('trigered');
     event.preventDefault();
     let answer = this.state.inputValue;
     let comparisonArray = this.state.anagramComponents;
     for (let i = 0; i < comparisonArray.length; i++) {
       if (answer === comparisonArray[i]) {
-        console.log('true');
-
-        comparisonArray.splice(i, 1);
-        console.log(comparisonArray);
-        this.setState({
-          inputValue: '',
-          anagramComponents: comparisonArray
-        })
+        let reference = this.anagramReferenceChanger(answer);
+        let anagram = this.refs[reference];
+        console.log(anagram);
+        // comparisonArray.splice(i, 1);
+        // this.setState({
+        //   inputValue: '',
+        //   anagramComponents: comparisonArray
+        // })
 
         return true;
       }
@@ -87,6 +88,11 @@ class GameBox extends Component {
 
   }
 
+  anagramReferenceChanger = (anagram) => {
+    let reference = anagram.replace(/\s/g, '')
+    return reference;
+  }
+
   render() {
 
     return (
@@ -96,20 +102,25 @@ class GameBox extends Component {
         <div ref={ (gameBox) => this.gameBox = gameBox} className="my-3 game-box">
 
           {this.state.anagramComponents.map((component) => {
-            return <Anagram anagram={component} key={component} playingWidth={this.state.gameBoxWidth} playingHeight={this.state.gameBoxHeight} />
-          })}
+            return(
+              <div key={component} ref={this.anagramReferenceChanger(component)}>
+                <Anagram
+                  anagram={component}
+                   playingWidth={this.state.gameBoxWidth} playingHeight={this.state.gameBoxHeight} />
+              </div>)
+            })}
 
-          <div ref={ (inputBox) => this.inputBox = inputBox} className="game-answer d-flex justify-content-center align-items-center">
-            <form onSubmit={this.anagramChecker}>
-              <input ref={ (inputBox) => this.inputBox = inputBox} type="text" value={this.state.inputValue} onChange={this.handleChange} />
-              <input style={{display: 'none'}} type="submit" value="Submit" />
-            </form>
+            <div ref={ (inputBox) => this.inputBox = inputBox} className="game-answer d-flex justify-content-center align-items-center">
+              <form onSubmit={this.anagramChecker}>
+                <input ref={ (inputBox) => this.inputBox = inputBox} type="text" value={this.state.inputValue} onChange={this.handleChange} />
+                <input style={{display: 'none'}} type="submit" value="Submit" />
+              </form>
+            </div>
+
           </div>
-
-        </div>
-      </Aux>
-    )
+        </Aux>
+      )
+    }
   }
-}
 
-export default GameBox
+  export default GameBox
