@@ -7,13 +7,14 @@ class GameBox extends Component {
   state = {
     gameBoxHeight: 0,
     gameBoxWidth: 0,
-    anagrams: ['anagram reference test'],
+    anagrams: ['bagan', 'yangon' ],
     anagramComponents: [],
     counter: 0,
     countdown: 5,
     inputValue: '',
     correctAnswers: 0,
-    lives: 5
+    lives: 5,
+    focus: true
   }
 
   componentDidMount() {
@@ -26,7 +27,7 @@ class GameBox extends Component {
   }
 
   startIntervalHandler = () => {
-    //
+    this.inputField.focus()
     // let startCountdown = () => {
     //   let countdown = this.state.countdown;
     //   console.log(countdown);
@@ -45,10 +46,10 @@ class GameBox extends Component {
         let selectedAnagram = this.state.anagrams[counter];
         let anagramComponents = this.state.anagramComponents;
         anagramComponents.push(selectedAnagram);
-        this.setState({
-          anagramComponents: anagramComponents,
-          counter: counter + 1
-        })
+        this.setState(prevState => ({
+          anagramComponents: [...prevState.anagramComponents, selectedAnagram],
+          counter: prevState.counter + 1
+        }))
       } else {
         clearInterval(intervalId);
       }
@@ -62,27 +63,21 @@ class GameBox extends Component {
   }
 
   anagramChecker = (event) => {
-    console.log('trigered');
     event.preventDefault();
     let answer = this.state.inputValue;
     let comparisonArray = this.state.anagramComponents;
     for (let i = 0; i < comparisonArray.length; i++) {
       if (answer === comparisonArray[i]) {
-        let reference = this.anagramReferenceChanger(answer);
-        let anagram = this.refs[reference];
-        console.log(anagram);
-        // comparisonArray.splice(i, 1);
-        // this.setState({
-        //   inputValue: '',
-        //   anagramComponents: comparisonArray
-        // })
-
+        // let reference = this.anagramReferenceChanger(answer);
+        // let anagram = this.refs[reference];
+        this.setState({
+          inputValue: ''
+        })
         return true;
       }
       this.setState({
         inputValue: ''
       })
-      console.log('false');
       return false;
     }
 
@@ -94,33 +89,38 @@ class GameBox extends Component {
   }
 
   render() {
-
     return (
       <Aux>
-        <p style={{pointer: 'cursor'}} onClick={this.startIntervalHandler}>Start</p>
+        <p style={{cursor: 'pointer', display: 'inline-blockc '}} onClick={this.startIntervalHandler}>Start</p>
 
         <div ref={ (gameBox) => this.gameBox = gameBox} className="my-3 game-box">
 
           {this.state.anagramComponents.map((component) => {
             return(
-              <div key={component} ref={this.anagramReferenceChanger(component)}>
-                <Anagram
-                  anagram={component}
-                   playingWidth={this.state.gameBoxWidth} playingHeight={this.state.gameBoxHeight} />
-              </div>)
-            })}
+              <Anagram
+                key={component}
+                ref={this.anagramReferenceChanger(component)}
+                correct={true}
+                finished={false}
+                anagram={component}
+                playingWidth={this.state.gameBoxWidth} playingHeight={this.state.gameBoxHeight} />)
+              })}
 
-            <div ref={ (inputBox) => this.inputBox = inputBox} className="game-answer d-flex justify-content-center align-items-center">
-              <form onSubmit={this.anagramChecker}>
-                <input ref={ (inputBox) => this.inputBox = inputBox} type="text" value={this.state.inputValue} onChange={this.handleChange} />
-                <input style={{display: 'none'}} type="submit" value="Submit" />
-              </form>
+              <div ref={ (inputBox) => this.inputBox = inputBox} className="game-answer d-flex justify-content-center align-items-center">
+                <form onSubmit={this.anagramChecker}>
+                  <input
+                    ref={ (inputField) => this.inputField = inputField} type="text"
+                    value={this.state.inputValue} onChange={this.handleChange} />
+
+                  <input style={{display: 'none'}} type="submit" value="Submit" />
+
+                </form>
+              </div>
+
             </div>
-
-          </div>
-        </Aux>
-      )
+          </Aux>
+        )
+      }
     }
-  }
 
-  export default GameBox
+    export default GameBox

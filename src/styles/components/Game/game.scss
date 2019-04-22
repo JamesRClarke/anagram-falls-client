@@ -24,7 +24,7 @@
   }
 
   .game-answer {
-    border-top: 1px solid black;
+    border-top: 1px solid $color-blue;
     position: absolute;
     bottom: 0;
     left:0;
@@ -37,8 +37,16 @@
       background: white;
       color: $color-blue;
       text-align: center;
-
+      &:focus {
+        border: 2px $color-blue  solid ;
+      }
     }
   }
 
+}
+
+.hidden-anagram {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
 }

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-
+import Aux from '../../../../hoc/Aux'
 
 class Anagram extends Component {
   constructor(props) {
     super(props);
     this.state = {
       anagramPosTop: -35,
-      anagramPosXY:  Math.ceil((Math.random() * (this.props.playingWidth - 50)))
+      anagramPosXY:  Math.ceil((Math.random() * (this.props.playingWidth - 85)))
     }
   }
 
@@ -27,18 +27,18 @@ class Anagram extends Component {
 
   render() {
     return (
-      <div >
+      <Aux >
         <p
           className="game-anagram"
           style={{
             top: `${this.state.anagramPosTop}px`,
             left: `${this.state.anagramPosXY}px`}}>
-          {this.props.anagram}
-        </p>
-      </div>
-    )
+            {this.props.anagram}
+          </p>
+        </Aux>
+      )
 
+    }
   }
-}
 
-export default Anagram
+  export default Anagram
