@@ -14,7 +14,8 @@ class GameBox extends Component {
     inputValue: '',
     correctAnswers: 0,
     lives: 5,
-    focus: true
+    focus: true,
+    answer: null
   }
 
   componentDidMount() {
@@ -27,7 +28,7 @@ class GameBox extends Component {
   }
 
   startIntervalHandler = () => {
-    this.inputField.focus()
+    this.inputField.focus();
     // let startCountdown = () => {
     //   let countdown = this.state.countdown;
     //   console.log(countdown);
@@ -39,23 +40,23 @@ class GameBox extends Component {
 
 
     let pushAnagram = () => {
-
       let intervalId = null;
       let counter = this.state.counter;
-      if (counter <= this.state.anagrams.length - 1) {
+      if (counter <= this.state.anagrams.length -1) {
         let selectedAnagram = this.state.anagrams[counter];
         let anagramComponents = this.state.anagramComponents;
         anagramComponents.push(selectedAnagram);
         this.setState(prevState => ({
-          anagramComponents: [...prevState.anagramComponents, selectedAnagram],
+          anagramComponents: anagramComponents,
           counter: prevState.counter + 1
         }))
       } else {
         clearInterval(intervalId);
       }
     }
-    setTimeout(() => pushAnagram(), 5000);
-    setTimeout(() => setInterval(pushAnagram, 10000), 15000);
+    // setTimeout(() => pushAnagram(), 1000); //this is to have the countdown for the game to begin
+
+    setTimeout(() => setInterval(pushAnagram, 2000), 100);
   }
 
   handleChange = (event) => {
@@ -64,15 +65,17 @@ class GameBox extends Component {
 
   anagramChecker = (event) => {
     event.preventDefault();
+    console.log(this.state.inputValue);
     let answer = this.state.inputValue;
     let comparisonArray = this.state.anagramComponents;
     for (let i = 0; i < comparisonArray.length; i++) {
       if (answer === comparisonArray[i]) {
-        // let reference = this.anagramReferenceChanger(answer);
-        // let anagram = this.refs[reference];
+        console.log(answer);
         this.setState({
-          inputValue: ''
+          inputValue: '',
+          answer: answer
         })
+        console.log(this.state.answer);
         return true;
       }
       this.setState({
@@ -83,15 +86,10 @@ class GameBox extends Component {
 
   }
 
-  anagramReferenceChanger = (anagram) => {
-    let reference = anagram.replace(/\s/g, '')
-    return reference;
-  }
-
   render() {
     return (
       <Aux>
-        <p style={{cursor: 'pointer', display: 'inline-blockc '}} onClick={this.startIntervalHandler}>Start</p>
+        <p style={{cursor: 'pointer', display: 'inline-block'}} onClick={this.startIntervalHandler}>Start</p>
 
         <div ref={ (gameBox) => this.gameBox = gameBox} className="my-3 game-box">
 
@@ -99,11 +97,11 @@ class GameBox extends Component {
             return(
               <Anagram
                 key={component}
-                ref={this.anagramReferenceChanger(component)}
-                correct={true}
+                answer={this.state.answer}
                 finished={false}
                 anagram={component}
-                playingWidth={this.state.gameBoxWidth} playingHeight={this.state.gameBoxHeight} />)
+                playingWidth={this.state.gameBoxWidth} playingHeight={this.state.gameBoxHeight} />
+            )
               })}
 
               <div ref={ (inputBox) => this.inputBox = inputBox} className="game-answer d-flex justify-content-center align-items-center">

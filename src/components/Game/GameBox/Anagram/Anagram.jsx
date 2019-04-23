@@ -6,7 +6,7 @@ class Anagram extends Component {
     super(props);
     this.state = {
       anagramPosTop: -35,
-      anagramPosXY:  Math.ceil((Math.random() * (this.props.playingWidth - 85)))
+      anagramPosXY:  Math.ceil((Math.random() * (this.props.playingWidth - 50)))
     }
   }
 
@@ -26,10 +26,12 @@ class Anagram extends Component {
   }
 
   render() {
+    console.log(this.props.answer === this.props.anagram);
+  // ${this.props.answer === this.props.anagram ? 'correct-answer' : null }
     return (
       <Aux >
         <p
-          className="game-anagram"
+          className={`game-anagram ${this.props.answer === this.props.anagram ? 'correct-answer' : null }`}
           style={{
             top: `${this.state.anagramPosTop}px`,
             left: `${this.state.anagramPosXY}px`}}>

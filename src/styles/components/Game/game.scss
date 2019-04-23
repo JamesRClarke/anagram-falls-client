@@ -13,14 +13,27 @@
   overflow:hidden;
   position: relative;
   max-width: 100%;
-  background: lighten($color-green, 30%);
+  background: $color-grey-dark;
   min-height: 750px;
   height: 85%;
+
 
   .game-anagram {
     position: absolute;
     z-index: 999;
-    color: red;
+    color: white;
+
+    &.correct-answer {
+      color: lighten($color-green, 5%);
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s 2s, opacity 2s linear;
+    }
+
+    &.fallen-answer {
+      color: $color-error;
+    }
+
   }
 
   .game-answer {
