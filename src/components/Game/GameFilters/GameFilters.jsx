@@ -21,9 +21,9 @@ const GameFilters = (props) => {
           type="category"/>
       </div>
       <div className="d-flex p-3 justify-content-between align-items-center">
-        <p>Difficulty selected: {props.difficultySelection}
+        <p>Difficulty: {props.difficultySelection}
         </p>
-        <p>Category selected: {props.categorySelection}</p>
+        <p>Category: {props.categorySelection}</p>
       </div>
     </div>
   )

@@ -53,7 +53,6 @@ class Game extends Component {
           <GameBox
             difficulty={this.state.difficulty}
              category={this.state.category}
-
               />
         </div>
 

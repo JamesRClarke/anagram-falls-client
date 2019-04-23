@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Anagram from './Anagram/Anagram';
+import Button from '../../UI/Button/Button'
 // import CountDown from './CountDown/CountDown';
 import Aux from '../../../hoc/Aux';
 
@@ -7,14 +8,14 @@ class GameBox extends Component {
   state = {
     gameBoxHeight: 0,
     gameBoxWidth: 0,
-    anagrams: ['bagan', 'yangon', 'anagram'],
+    anagrams: null,
+    difficulty: null,
     anagramComponents: [],
     counter: 0,
     countdown: 5,
     inputValue: '',
     correctAnswers: 0,
     lives: 5,
-    focus: true,
     answer: null
   }
 
@@ -24,6 +25,13 @@ class GameBox extends Component {
     this.setState({
       gameBoxHeight: height,
       gameBoxWidth: width
+    })
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      anagrams: this.props.category,
+      difficulty: this.props.difficulty
     })
   }
 
@@ -94,9 +102,14 @@ class GameBox extends Component {
   render() {
     return (
       <Aux>
-        <p style={{cursor: 'pointer', display: 'inline-block'}} onClick={this.startIntervalHandler}>Start</p>
+        <div className="d-flex justify-content-center">
+          <div onClick={this.startIntervalHandler} >
+          <Button  class="btn basic">Start!</Button>
+          </div>
+        </div>
 
-        <div ref={ (gameBox) => this.gameBox = gameBox} className="my-3 game-box">
+
+        <div ref={ (gameBox) => this.gameBox = gameBox} className="game-box">
 
           {this.state.anagramComponents.map((component) => {
             return(
