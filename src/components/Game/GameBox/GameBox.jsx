@@ -87,7 +87,6 @@ class GameBox extends Component {
   render() {
     return (
       <Aux>
-        <p>{this.props.difficulty}</p>
         <p style={{cursor: 'pointer', display: 'inline-blockc '}} onClick={this.startIntervalHandler}>Start</p>
 
         <div ref={ (gameBox) => this.gameBox = gameBox} className="my-3 game-box">

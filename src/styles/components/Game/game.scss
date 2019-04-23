@@ -6,7 +6,7 @@
   max-width: 100%;
   background: $color-green;
   border: 2px solid $color-blue;
-  height: 15%;
+  height: 25%;
 }
 
 .filter-container {
@@ -18,6 +18,13 @@
   left:0;
   top: 30px;
   transition: 500ms ease-in-out;
+
+  &.hide {
+    display: none;
+  }
+  &.show {
+    display: block;
+  }
 }
 
 .game-box {

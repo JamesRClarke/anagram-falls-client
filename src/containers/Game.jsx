@@ -18,39 +18,43 @@ class Game extends Component {
     showCategories: false
   }
 
-  chooseGameSettings = (selection, type) => {
+  chooseGameSettingsHandler = (selection, type) => {
+    this.viewGameOptionsHandler(type)
+    let stateObj = this.state[type];
+    stateObj.value = selection;
     this.setState({
-      [type].value: selection
+      [type]: stateObj
     })
   }
 
-  showDifficultiesHandler = () => {
-    this.setState(prevState => ({
-      showDifficulties: !prevState.showDifficulties
-    }))
-    return this.state.showDifficulties;
+  viewGameOptionsHandler = (type) => {
+    let stateObj = this.state[type];
+    stateObj.inView = !stateObj.inView;
+    this.setState({
+      [type]: stateObj
+    })
   }
 
-  showCategoriesHandler = () => {
-    this.setState(prevState => ({
-      showCategories: !prevState.showCategories
-    }))
-    return this.state.showCategories;
-  }
 
   render() {
     return (
       <Aux >
         <div className="game-container container">
           <GameFilters
-            clicked={this.chooseGameSettings}
-            showDifficulties={this.state.showDifficulties}
-            showCategories={this.state.showCategoriesHandlers}
+            categorySelection={this.state.category.value}
+            difficultySelection={this.state.difficulty.value}
+            chooseSettings={this.chooseGameSettingsHandler}
+            viewSettings={this.viewGameOptionsHandler}
+            difficultyView={this.state.difficulty.inView}
+            categoryView={this.state.category.inView}
             difficultyOptions={['easy', 'medium', 'hard', 'are you feeling ok?']}
             categoryOptions={['Burma', 'Thailand']}
             />
           <GameBox
-            difficulty={this.state.difficulty} category={this.state.category} />
+            difficulty={this.state.difficulty}
+             category={this.state.category}
+
+              />
         </div>
 
       </Aux>

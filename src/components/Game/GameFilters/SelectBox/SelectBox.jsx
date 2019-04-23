@@ -2,7 +2,7 @@ import React from 'react';
 
 const select = (props) => (
   <div className="filter-container">
-    <p >Select {props.type}</p>
+    <p onClick={() => props.viewSettings( props.type)}>Select {props.type}</p>
 
     <div
       className={`filter-options ${props.visible ? 'show' : 'hide'}`}>
@@ -10,7 +10,7 @@ const select = (props) => (
         return(
           <p
             key={index}
-            onClick={() => props.clicked(option, props.type)}>{option}</p>
+            onClick={() => props.chooseSettings(option, props.type)}>{option}</p>
         )
       })}
     </div>
