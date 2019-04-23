@@ -7,14 +7,10 @@ class GameBox extends Component {
   state = {
     gameBoxHeight: 0,
     gameBoxWidth: 0,
-    anagrams: ['bagan', 'yangon' ],
+    anagrams: ['bagan', 'yangon'],
     anagramComponents: [],
     counter: 0,
-    countdown: 5,
-    inputValue: '',
-    correctAnswers: 0,
-    lives: 5,
-    focus: true
+    inputValue: ''
   }
 
   componentDidMount() {
@@ -27,7 +23,7 @@ class GameBox extends Component {
   }
 
   startIntervalHandler = () => {
-    this.inputField.focus()
+    this.inputField.focus();
     // let startCountdown = () => {
     //   let countdown = this.state.countdown;
     //   console.log(countdown);
@@ -91,6 +87,7 @@ class GameBox extends Component {
   render() {
     return (
       <Aux>
+        <p>{this.props.difficulty}</p>
         <p style={{cursor: 'pointer', display: 'inline-blockc '}} onClick={this.startIntervalHandler}>Start</p>
 
         <div ref={ (gameBox) => this.gameBox = gameBox} className="my-3 game-box">

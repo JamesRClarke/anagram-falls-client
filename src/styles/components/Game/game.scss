@@ -9,6 +9,17 @@
   height: 15%;
 }
 
+.filter-container {
+  position: relative;
+}
+
+.filter-options {
+  position: absolute;
+  left:0;
+  top: 30px;
+  transition: 500ms ease-in-out;
+}
+
 .game-box {
   overflow:hidden;
   position: relative;
