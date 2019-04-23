@@ -1,5 +1,5 @@
 .game-container {
-  height: 95vh;
+  height: 93vh;
 }
 
 .game-filters {
@@ -14,30 +14,33 @@
   position: relative;
   max-width: 100%;
   background: $color-grey-dark;
-  min-height: 750px;
-  height: 85%;
+  height: 100%;
 
 
   .game-anagram {
     position: absolute;
     z-index: 999;
-    color: white;
+    color: $color-white;
+    opacity: 1;
+    transition: all 1.5s;
 
     &.correct-answer {
-      color: lighten($color-green, 5%);
+      color: $color-green;
       visibility: hidden;
       opacity: 0;
-      transition: visibility 0s 2s, opacity 2s linear;
+      transition: visibility 0s 1s, opacity 1s;
     }
 
     &.fallen-answer {
       color: $color-error;
+      opacity: 0;
+      transition: opacity 2s ease-out;
     }
 
   }
 
   .game-answer {
-    border-top: 1px solid $color-blue;
+    border-top: 1px solid $color-white;
     position: absolute;
     bottom: 0;
     left:0;

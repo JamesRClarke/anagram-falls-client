@@ -6,7 +6,8 @@ class Anagram extends Component {
     super(props);
     this.state = {
       anagramPosTop: -35,
-      anagramPosXY:  Math.ceil((Math.random() * (this.props.playingWidth - 50)))
+      anagramPosXY:  Math.ceil((Math.random() * (this.props.playingWidth - 80))),
+      answered: false
     }
   }
 
@@ -19,6 +20,9 @@ class Anagram extends Component {
         })
       } else {
         clearInterval(intervalId);
+        this.setState({
+          fallenAnswer: true
+        })
       }
     };
 
@@ -26,12 +30,10 @@ class Anagram extends Component {
   }
 
   render() {
-    console.log(this.props.answer === this.props.anagram);
-  // ${this.props.answer === this.props.anagram ? 'correct-answer' : null }
     return (
       <Aux >
         <p
-          className={`game-anagram ${this.props.answer === this.props.anagram ? 'correct-answer' : null }`}
+          className={`game-anagram  ${this.props.answer === this.props.anagram ? 'correct-answer' : null} ${this.state.fallenAnswer ? 'fallen-answer' : null}`}
           style={{
             top: `${this.state.anagramPosTop}px`,
             left: `${this.state.anagramPosXY}px`}}>
