@@ -7,7 +7,7 @@ class Anagram extends Component {
     this.state = {
       anagramPosTop: -35,
       anagramPosXY:  Math.ceil((Math.random() * (this.props.playingWidth - 80))),
-      answered: false
+      fallenAnswer: false
     }
   }
 
@@ -16,10 +16,11 @@ class Anagram extends Component {
     let moveAnagram = () => {
       if(this.state.anagramPosTop <= this.props.playingHeight) {
         this.setState({
-          anagramPosTop: this.state.anagramPosTop + 10
+          anagramPosTop: this.state.anagramPosTop + 30
         })
       } else {
         clearInterval(intervalId);
+        this.props.updateIncorrectAnswers();
         this.setState({
           fallenAnswer: true
         })
@@ -33,7 +34,10 @@ class Anagram extends Component {
     return (
       <Aux >
         <p
-          className={`game-anagram  ${this.props.answer === this.props.anagram ? 'correct-answer' : null} ${this.state.fallenAnswer ? 'fallen-answer' : null}`}
+          className={`
+            ${!this.props.answer || !this.state.fallenAnswer ? 'game-anagram' : null}
+            ${this.props.answer === this.props.anagram ? 'correct-answer' : null}
+             ${this.state.fallenAnswer ? 'fallen-answer' : null}`}
           style={{
             top: `${this.state.anagramPosTop}px`,
             left: `${this.state.anagramPosXY}px`}}>

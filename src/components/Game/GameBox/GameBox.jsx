@@ -54,13 +54,19 @@ class GameBox extends Component {
         clearInterval(intervalId);
       }
     }
-    // setTimeout(() => pushAnagram(), 1000); //this is to have the countdown for the game to begin
+    // setTimeout(() => pushAnagram(), 3000); //this is to have the countdown for the game to begin
 
     setTimeout(() => setInterval(pushAnagram, 2000), 100);
   }
 
   handleChange = (event) => {
     this.setState({inputValue: event.target.value});
+  }
+
+  updateIncorrectAnswers = () => {
+    this.setState({
+      lives: this.state.lives - 1
+    })
   }
 
   anagramChecker = (event) => {
@@ -71,18 +77,19 @@ class GameBox extends Component {
       if (answer === comparisonArray[i]) {
         this.setState({
           inputValue: '',
-          answer: answer
+          answer: answer,
+          correctAnswers: this.state.correctAnswers + 1
         })
-        setTimeout(() => {comparisonArray.splice(i,1)}, 2000)
+        setTimeout(() => {comparisonArray.splice(i,1)}, 3000)
         return true;
       }
 
       this.setState({
-        inputValue: ''
+        inputValue: '',
       })
     }
-
   }
+
 
   render() {
     return (
@@ -95,6 +102,7 @@ class GameBox extends Component {
             return(
               <Anagram
                 key={component}
+                updateIncorrectAnswers={this.updateIncorrectAnswers}
                 answer={this.state.answer}
                 anagram={component}
                 playingWidth={this.state.gameBoxWidth} playingHeight={this.state.gameBoxHeight} />
@@ -102,14 +110,24 @@ class GameBox extends Component {
           })}
 
           <div ref={ (inputBox) => this.inputBox = inputBox} className="game-answer d-flex justify-content-center align-items-center">
-            <form onSubmit={this.anagramChecker}>
-              <input
-                ref={ (inputField) => this.inputField = inputField} type="text"
-                value={this.state.inputValue} onChange={this.handleChange} />
+            <div className="mx-5">
+              <p>Lives: {this.state.lives}</p>
+            </div>
+            <div className="mx-5">
+              <form onSubmit={this.anagramChecker}>
+                <input
+                  ref={ (inputField) => this.inputField = inputField}
 
-              <input style={{display: 'none'}} type="submit" value="Submit" />
+                  type="text"
+                  value={this.state.inputValue} onChange={this.handleChange} />
 
-            </form>
+                <input style={{display: 'none'}} type="submit" value="Submit" />
+
+              </form>
+            </div>
+            <div className="mx-5">
+              <p>Score: {this.state.correctAnswers}</p>
+            </div>
           </div>
 
         </div>
