@@ -4,6 +4,8 @@ import Button from '../../UI/Button/Button'
 // import CountDown from './CountDown/CountDown';
 import Aux from '../../../hoc/Aux';
 
+import anagramDirectory from '../../../assets/anagrams.json';
+
 class GameBox extends Component {
   state = {
     gameBoxHeight: 0,
@@ -22,6 +24,7 @@ class GameBox extends Component {
   componentDidMount() {
     const height = this.gameBox.clientHeight - this.inputBox.clientHeight - 35;
     const width = this.gameBox.clientWidth;
+
     this.setState({
       gameBoxHeight: height,
       gameBoxWidth: width
@@ -29,8 +32,9 @@ class GameBox extends Component {
   }
 
   componentWillReceiveProps() {
+    let chosenAnagrams = anagramDirectory[this.props.category.value];
     this.setState({
-      anagrams: this.props.category,
+      anagrams: chosenAnagrams,
       difficulty: this.props.difficulty
     })
   }
@@ -68,7 +72,7 @@ class GameBox extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({inputValue: event.target.value});
+    this.setState({inputValue: event.target.value.toLowerCase()});
   }
 
   updateIncorrectAnswers = () => {
@@ -82,7 +86,7 @@ class GameBox extends Component {
     let answer = this.state.inputValue;
     let comparisonArray = this.state.anagramComponents;
     for (let i = 0; i <= comparisonArray.length; i++) {
-      if (answer === comparisonArray[i]) {
+      if (answer  === comparisonArray[i] ) {
         this.setState({
           inputValue: '',
           answer: answer,
