@@ -5,6 +5,7 @@ import Button from '../../UI/Button/Button'
 import Aux from '../../../hoc/Aux';
 
 import anagramDirectory from '../../../assets/anagrams.json';
+import difficultySettings from '../../../assets/difficultySettings.json';
 
 class GameBox extends Component {
   state = {
@@ -33,13 +34,15 @@ class GameBox extends Component {
 
   componentWillReceiveProps() {
     let chosenAnagrams = anagramDirectory[this.props.category.value];
+    let difficultyChoice = difficultySettings[this.props.difficulty.value];
     this.setState({
       anagrams: chosenAnagrams,
-      difficulty: this.props.difficulty
+      difficulty: difficultyChoice
     })
   }
 
   startIntervalHandler = () => {
+    console.log(this.state.difficulty);
     this.inputField.focus();
     // let startCountdown = () => {
     //   let countdown = this.state.countdown;
@@ -68,7 +71,7 @@ class GameBox extends Component {
     }
     // setTimeout(() => pushAnagram(), 3000); //this is to have the countdown for the game to begin
 
-    setTimeout(() => setInterval(pushAnagram, 2000), 100);
+    setTimeout(() => setInterval(pushAnagram, this.state.difficulty.anagramGenerateFrequency), 100);
   }
 
   handleChange = (event) => {
@@ -120,6 +123,7 @@ class GameBox extends Component {
               <Anagram
                 key={component}
                 updateIncorrectAnswers={this.updateIncorrectAnswers}
+                difficulty={this.state.difficulty}
                 answer={this.state.answer}
                 anagram={component}
                 playingWidth={this.state.gameBoxWidth} playingHeight={this.state.gameBoxHeight} />

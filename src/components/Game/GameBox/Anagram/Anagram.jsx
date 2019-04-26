@@ -17,7 +17,7 @@ class Anagram extends Component {
     let moveAnagram = () => {
       if(this.state.anagramPosTop <= this.props.playingHeight) {
         this.setState({
-          anagramPosTop: this.state.anagramPosTop + 30
+          anagramPosTop: this.state.anagramPosTop + this.props.difficulty.marginDrop
         })
       } else {
         clearInterval(intervalId);
@@ -28,7 +28,7 @@ class Anagram extends Component {
 
       }
     };
-    setInterval(moveAnagram, 1000);
+    setInterval(moveAnagram, this.props.difficulty.anagramDropSpeed);
   }
 
   anagramCreator = (value) => {
@@ -51,7 +51,7 @@ class Anagram extends Component {
           className={`
             ${!this.props.answer || !this.state.fallenAnswer ? 'game-anagram' : null}
             ${this.props.answer  === this.props.anagram  ? 'correct-answer' : null}
-             ${this.state.fallenAnswer ? 'fallen-answer' : null}`}
+             ${this.state.fallenAnswer ? 'fallen-answer' : null} transition: all ${this.props.difficulty.transitionSpeed};`}
           style={{
             top: `${this.state.anagramPosTop}px`,
             left: `${this.state.anagramPosXY}px`}}>

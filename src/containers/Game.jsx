@@ -47,7 +47,7 @@ class Game extends Component {
             viewSettings={this.viewGameOptionsHandler}
             difficultyView={this.state.difficulty.inView}
             categoryView={this.state.category.inView}
-            difficultyOptions={['easy', 'medium', 'hard', 'are you feeling ok?']}
+            difficultyOptions={['easy', 'medium', 'hard', 'insane']}
             categoryOptions={['Travel', 'Football']}
             />
           <GameBox
