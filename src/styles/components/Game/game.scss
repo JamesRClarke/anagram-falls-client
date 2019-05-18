@@ -4,12 +4,10 @@
 
 .game-filters {
   max-width: 100%;
-  background: $color-green;
-  border: 2px solid $color-blue;
-  height: 25%;
 }
 
 .filter-container {
+  cursor: pointer;
   position: relative;
 }
 
@@ -17,7 +15,16 @@
   position: absolute;
   left:0;
   top: 30px;
-  transition: 500ms ease-in-out;
+  transition: 500ms ease-out;
+  max-height: 90px;
+  overflow: auto;
+  width: 100%;
+  text-align: center;
+
+  &::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
 
   &.hide {
     display: none;
@@ -39,7 +46,7 @@
     position: absolute;
     z-index: 999;
     color: $color-white;
-    
+
 
     &.correct-answer {
       color: $color-green;

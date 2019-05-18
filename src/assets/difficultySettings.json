@@ -1,26 +1,26 @@
 {
   "easy": {
-    "anagramDropSpeed": 7000,
-    "anagramGenerateFrequency": 4000,
+    "anagramDropSpeed": 10000,
+    "anagramGenerateFrequency": 12000,
     "marginDrop": 10,
     "transitionSpeed": 1.5
   },
   "medium": {
     "anagramDropSpeed": 5000,
-    "anagramGenerateFrequency": 3000,
-    "marginDrop": 20,
-    "transitionSpeed": 2.5
+    "anagramGenerateFrequency": 7000,
+    "marginDrop": 10,
+    "transitionSpeed": 1.5
   },
   "hard": {
     "anagramDropSpeed": 3000,
-    "anagramGenerateFrequency": 2000,
-    "marginDrop": 30,
-    "transitionSpeed": 3.5
+    "anagramGenerateFrequency": 5000,
+    "marginDrop": 20,
+    "transitionSpeed": 2.5
   },
   "insane": {
     "anagramDropSpeed": 1000,
-    "anagramGenerateFrequency": 1000,
-    "marginDrop": 50,
-    "transitionSpeed": 5.5
+    "anagramGenerateFrequency": 2000,
+    "marginDrop": 40,
+    "transitionSpeed": 4.5
   }
 }

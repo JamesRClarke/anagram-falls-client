@@ -21,6 +21,7 @@ class Game extends Component {
   chooseGameSettingsHandler = (selection, type) => {
     this.viewGameOptionsHandler(type)
     let stateObj = this.state[type];
+    stateObj.inView = !stateObj.inView;
     stateObj.value = selection;
     this.setState({
       [type]: stateObj

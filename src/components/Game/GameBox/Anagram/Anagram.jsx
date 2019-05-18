@@ -12,23 +12,23 @@ class Anagram extends Component {
     }
   }
 
-  componentDidMount() {
-    let intervalId;
-    let moveAnagram = () => {
-      if(this.state.anagramPosTop <= this.props.playingHeight) {
-        this.setState({
-          anagramPosTop: this.state.anagramPosTop + this.props.difficulty.marginDrop
-        })
-      } else {
-        clearInterval(intervalId);
-        this.props.updateIncorrectAnswers();
-        this.setState({
-          fallenAnswer: true
-        })
+  intervalId = null;
+  moveAnagram = () => {
+    if(this.state.anagramPosTop <= this.props.playingHeight) {
+      this.setState({
+        anagramPosTop: this.state.anagramPosTop + this.props.difficulty.marginDrop
+      })
+    } else {
+      this.setState({
+        fallenAnswer: true
+      })
+      this.props.updateIncorrectAnswers();
+      clearInterval(this.interval);
+    }
+  };
 
-      }
-    };
-    setInterval(moveAnagram, this.props.difficulty.anagramDropSpeed);
+  componentDidMount() {
+    this.interval = setInterval(this.moveAnagram, this.props.difficulty.anagramDropSpeed);
   }
 
   anagramCreator = (value) => {
@@ -51,16 +51,16 @@ class Anagram extends Component {
           className={`
             ${!this.props.answer || !this.state.fallenAnswer ? 'game-anagram' : null}
             ${this.props.answer  === this.props.anagram  ? 'correct-answer' : null}
-             ${this.state.fallenAnswer ? 'fallen-answer' : null} transition: all ${this.props.difficulty.transitionSpeed};`}
-          style={{
-            top: `${this.state.anagramPosTop}px`,
-            left: `${this.state.anagramPosXY}px`}}>
-            {this.state.anagram}
-          </p>
-        </Aux>
-      )
+            ${this.state.fallenAnswer ? 'fallen-answer' : null} transition: all ${this.props.difficulty.transitionSpeed};`}
+            style={{
+              top: `${this.state.anagramPosTop}px`,
+              left: `${this.state.anagramPosXY}px`}}>
+              {this.state.anagram}
+            </p>
+          </Aux>
+        )
 
+      }
     }
-  }
 
-  export default Anagram
+    export default Anagram

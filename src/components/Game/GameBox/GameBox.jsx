@@ -19,7 +19,8 @@ class GameBox extends Component {
     inputValue: '',
     correctAnswers: 0,
     lives: 5,
-    answer: null
+    answer: null,
+    endGame: false
   }
 
   componentDidMount() {
@@ -42,7 +43,6 @@ class GameBox extends Component {
   }
 
   startIntervalHandler = () => {
-    console.log(this.state.difficulty);
     this.inputField.focus();
     // let startCountdown = () => {
     //   let countdown = this.state.countdown;
@@ -53,11 +53,10 @@ class GameBox extends Component {
     // }
     // setInterval(startCountdown(), 1000);
 
-
     let pushAnagram = () => {
       let intervalId = null;
       let counter = this.state.counter;
-      if (counter <= this.state.anagrams.length - 1) {
+      if (counter <= this.state.anagrams.length - 1 || this.state.lives <= 0) {
         let selectedAnagram = this.state.anagrams[counter];
         let anagramComponents = this.state.anagramComponents;
         anagramComponents.push(selectedAnagram);
@@ -69,9 +68,10 @@ class GameBox extends Component {
         clearInterval(intervalId);
       }
     }
-    // setTimeout(() => pushAnagram(), 3000); //this is to have the countdown for the game to begin
 
-    setTimeout(() => setInterval(pushAnagram, this.state.difficulty.anagramGenerateFrequency), 100);
+      setTimeout(() => pushAnagram(), 3000); //this is to have the countdown for the game to begin
+
+      setTimeout(() => setInterval(pushAnagram, this.state.difficulty.anagramGenerateFrequency), (3000 + this.state.difficulty.anagramGenerateFrequency));
   }
 
   handleChange = (event) => {
@@ -82,6 +82,11 @@ class GameBox extends Component {
     this.setState({
       lives: this.state.lives - 1
     })
+    if (this.state.lives <= 0) {
+      this.setState({
+        anagramComponents: []
+      })
+    }
   }
 
   anagramChecker = (event) => {
@@ -111,7 +116,7 @@ class GameBox extends Component {
       <Aux>
         <div className="d-flex justify-content-center">
           <div onClick={this.startIntervalHandler} >
-          <Button  class="btn basic">Start!</Button>
+            <Button  class="btn basic">Start!</Button>
           </div>
         </div>
 
@@ -138,7 +143,6 @@ class GameBox extends Component {
               <form onSubmit={this.anagramChecker}>
                 <input
                   ref={ (inputField) => this.inputField = inputField}
-
                   type="text"
                   value={this.state.inputValue} onChange={this.handleChange} />
 
