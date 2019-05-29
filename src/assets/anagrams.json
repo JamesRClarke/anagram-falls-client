@@ -1,7 +1,26 @@
 {
   "Travel": [
-    "thailand", "laos", "cambodia", "america", "canada", "myanmar", "vietnam", "indonesia", "south korea", "japan", "australia", "hungary", "italy", "netherlands", "poland", "wales", "france", "malaysia", "spain"],
-    "Football": [
-      "arsenal", "bournemouth", "brighton & hove albion", "burnley", "cardiff city", "chelsea", "crystal palace", "everton"," fulham", "huddersfield town", "leiester city", "liverpool", "manchester city", "manchester united", "newcastle united", "southampton", "tottenham hotspur", "watford", "west ham united", "wolverhampton wanderers"
-    ]
-  }
+    "thailand", "laos", "cambodia", "america", "canada", "myanmar", "vietnam", "indonesia", "south korea", "japan", "australia", "hungary", "italy", "netherlands", "poland", "wales", "france", "malaysia", "spain"
+  ],
+  "Football": [
+    "arsenal", "bournemouth", "brighton & hove albion", "burnley", "cardiff city", "chelsea", "crystal palace", "everton", "fulham", "huddersfield town", "leicester city", "liverpool", "manchester city", "manchester united", "newcastle united", "southampton", "tottenham hotspur", "watford", "west ham united", "wolverhampton wanderers"
+  ],
+  "The Big Bang Theory": [
+    "sheldon","leanord","spock","cheesecake factory","howard","star trek","penny","koothrapoli","bernadette","physics","laundry","halo night","dumplings", "brisket","nasa","string theory","dark matter", "comiccon","comic book"
+  ],
+  "Lord of the Rings": [
+    "aragorn", "gimli","gandalf","legolas","mordor","uruk hai","frodo","golumm","orcs","the shire","baggins","sauron", "gondor","elves","hobbit","dwarves","two towers","black gate","faramir","saruman","shadowfax","witch king"
+  ],
+  "Capital Cities":[
+    "vienna","bridgetown","brasilia","brussels","sofia","hanoi","ottowa","bangui","washington","havana","prague","cairo","helsinki","budapest","jakarta","jerusalem","kingston","tokyo","nairobi","beijing","rabat","oslo","pyongyang","madrid"
+  ],
+  "Amigo": [
+    "kath","jake moore","rolls royce","fucking geoff","pod","robinson","nat yeo","xcina","knowlesey","tinder","petit blue","investment","thomson reuters"," moorhouse","pizza pilgrim","pdog","ewelina","workflow","10am stand up","tea cakes","momentum","james","harrison","kiddie fiddler","we love soup", "fuckoffee","jesus ruby","roger the dodger"
+  ],
+  "Devs":[
+    "function","javascript","switch","refactor","namespacing","jquery","const","primitive","object","array","responsive","constructor","recursive","indentation","iterate","method","algorithim","terminal","github","debugging","loop","variable"
+  ],
+  "Blockbusters": [
+    "the dark knight","inception","the shawshank redemption","mission impossible","fast & furious", "american pie","the sounds of the wind","avatar","titanic","toy story","spider man","mary poppins","the lion kings","101 dalmatians","my fair lady","pride and prejudice","romeo and juliet","bohemian rhapsody","matilda","home alone","doctor zhivago","the excorcist"
+  ]
+}

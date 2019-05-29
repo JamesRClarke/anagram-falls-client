@@ -12,7 +12,7 @@ class Anagram extends Component {
     }
   }
 
-  intervalId = null;
+
   moveAnagram = () => {
     if(this.state.anagramPosTop <= this.props.playingHeight) {
       this.setState({
@@ -22,6 +22,7 @@ class Anagram extends Component {
       this.setState({
         fallenAnswer: true
       })
+
       this.props.updateIncorrectAnswers();
       clearInterval(this.interval);
     }
@@ -34,14 +35,18 @@ class Anagram extends Component {
   anagramCreator = (value) => {
     let numberOfWords = value.split(' ').length;
     let anagramGenerated = '';
+
     for(let i = 0; i <= numberOfWords - 1; i++) {
       let word = value.split(' ')[i];
+
       word = word.split('').sort(() => {
         return 0.5 - Math.random();
       }).join('') + ' ';
+
       anagramGenerated = anagramGenerated + word;
     }
-    return anagramGenerated ;
+
+    return anagramGenerated;
   }
 
   render() {

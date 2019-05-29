@@ -27,18 +27,14 @@ class GameBox extends Component {
     const height = this.gameBox.clientHeight - this.inputBox.clientHeight - 35;
     const width = this.gameBox.clientWidth;
 
-    this.setState({
-      gameBoxHeight: height,
-      gameBoxWidth: width
-    })
-  }
+    let chosenAnagrams = anagramDirectory[this.props.category];
+    let difficultyChoice = difficultySettings[this.props.difficulty];
 
-  componentWillReceiveProps() {
-    let chosenAnagrams = anagramDirectory[this.props.category.value];
-    let difficultyChoice = difficultySettings[this.props.difficulty.value];
     this.setState({
       anagrams: chosenAnagrams,
-      difficulty: difficultyChoice
+      difficulty: difficultyChoice,
+      gameBoxHeight: height,
+      gameBoxWidth: width
     })
   }
 
@@ -54,9 +50,8 @@ class GameBox extends Component {
     // setInterval(startCountdown(), 1000);
 
     let pushAnagram = () => {
-      let intervalId = null;
       let counter = this.state.counter;
-      if (counter <= this.state.anagrams.length - 1 || this.state.lives <= 0) {
+      if (counter <= this.state.anagrams.length - 1 && this.state.lives >= 1) {
         let selectedAnagram = this.state.anagrams[counter];
         let anagramComponents = this.state.anagramComponents;
         anagramComponents.push(selectedAnagram);
@@ -65,13 +60,12 @@ class GameBox extends Component {
           counter: prevState.counter + 1
         }))
       } else {
-        clearInterval(intervalId);
+        clearInterval(this.interval);
       }
     }
+    setTimeout(() => pushAnagram(), 3000); //this is to have the countdown for the game to begin
 
-      setTimeout(() => pushAnagram(), 3000); //this is to have the countdown for the game to begin
-
-      setTimeout(() => setInterval(pushAnagram, this.state.difficulty.anagramGenerateFrequency), (3000 + this.state.difficulty.anagramGenerateFrequency));
+    setTimeout(() => this.interval = setInterval(pushAnagram, this.state.difficulty.anagramGenerateFrequency), (3000 + this.state.difficulty.anagramGenerateFrequency));
   }
 
   handleChange = (event) => {
@@ -114,10 +108,12 @@ class GameBox extends Component {
   render() {
     return (
       <Aux>
-        <div className="d-flex justify-content-center">
-          <div onClick={this.startIntervalHandler} >
-            <Button  class="btn basic">Start!</Button>
-          </div>
+        <div className="d-flex align-items-center justify-content-around">
+          <p>Difficulty: {this.props.difficulty}</p>
+
+          <Button clicked={this.startIntervalHandler}  class="btn basic">Start!</Button>
+
+          <p>Category: {this.props.category}</p>
         </div>
 
 

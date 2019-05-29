@@ -1,13 +1,10 @@
 input {
   &.invalid {
-
     // border-color: $color-error;
-
   }
+
   &.valid {
-
-    border-color: $color-green;
-
+     border-color: $color-green;
   }
 
 }
@@ -55,13 +52,6 @@ input {
     }
   }
 }
-
-// .has-content.effect-18 ~ .focus-border {
-//   &:before, &:after {
-//     width: 50%;
-//     transition: 0.4s;
-//   }
-// }
 
 .effect-18 {
   ~ label {

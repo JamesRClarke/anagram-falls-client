@@ -12,28 +12,28 @@ class Oauth extends Component {
     return(
       <Aux>
         <Button class="btn github">
-          <div className="row mx-auto align-items-center justify-content-center">
-            <div className="col-12 offset-7 offset-md-6 text-left">
+          <div className="row align-items-center justify-content-center">
+            <div>
               <FaGithub />
-              <span className="ml-3">Github</span>
+              <span className="ml-2">Github</span>
 
             </div>
           </div>
         </Button>
         <Button class="btn google">
-          <div className="row mx-auto align-items-center justify-content-center">
-            <div className="col-12 offset-7 offset-md-6 text-left">
+          <div className="row align-items-center justify-content-center">
+            <div>
               <FaGoogle />
-              <span className="ml-3">Google</span>
+              <span className="ml-2">Google</span>
 
             </div>
           </div>
         </Button>
         <Button class="btn facebook">
-          <div className="row mx-auto align-items-center justify-content-center">
-            <div className="col-12 offset-7 offset-md-6 text-left">
+          <div className="row align-items-center justify-content-center">
+            <div>
               <FaFacebook />
-              <span className="ml-3">Facebook</span>
+              <span className="ml-2">Facebook</span>
 
             </div>
           </div>

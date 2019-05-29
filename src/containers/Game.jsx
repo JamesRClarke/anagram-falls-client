@@ -6,55 +6,45 @@ import  GameBox from '../components/Game/GameBox/GameBox';
 
 class Game extends Component {
   state = {
-    difficulty: {
-      value: null,
-      inView: false
-    },
-    category: {
-      value: null,
-      inView: false
-    },
-    showDifficulties: false,
-    showCategories: false
+    difficulty: null,
+    category: null,
+    continue: false
   }
+
+
 
   chooseGameSettingsHandler = (selection, type) => {
-    this.viewGameOptionsHandler(type)
-    let stateObj = this.state[type];
-    stateObj.inView = !stateObj.inView;
-    stateObj.value = selection;
     this.setState({
-      [type]: stateObj
+      [type]: selection
     })
   }
 
-  viewGameOptionsHandler = (type) => {
-    let stateObj = this.state[type];
-    stateObj.inView = !stateObj.inView;
+  gotToGame = () => {
     this.setState({
-      [type]: stateObj
+      continue: true
     })
   }
-
 
   render() {
     return (
       <Aux >
         <div className="game-container container">
-          <GameFilters
-            categorySelection={this.state.category.value}
-            difficultySelection={this.state.difficulty.value}
-            chooseSettings={this.chooseGameSettingsHandler}
-            viewSettings={this.viewGameOptionsHandler}
-            difficultyView={this.state.difficulty.inView}
-            categoryView={this.state.category.inView}
-            difficultyOptions={['easy', 'medium', 'hard', 'insane']}
-            categoryOptions={['Travel', 'Football']}
-            />
-          <GameBox
-            difficulty={this.state.difficulty}
-             category={this.state.category}
+          {!this.state.continue ?
+            <GameFilters
+              difficulty={this.state.difficulty}
+              category={this.state.category}
+              selectGameOptions={this.chooseGameSettingsHandler}
+              continueToGame={this.gotToGame}
               />
+            : null
+          }
+          {this.state.continue ?
+            <GameBox
+              difficulty={this.state.difficulty}
+              category={this.state.category}
+              />
+            : null
+          }
         </div>
 
       </Aux>

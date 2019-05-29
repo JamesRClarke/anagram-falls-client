@@ -1,38 +1,63 @@
 .game-container {
-  height: 93vh;
+  height: 90vh;
 }
 
+
+input {
+  &.search {
+    border-bottom: 1px solid $color-blue;
+  }
+}
+
+.selection-box {
+  width: 22%;
+  position: fixed;
+  top: 15%;
+  right: 0;
+  transform: translateZ(0);
+  background: $color-blue;
+  opacity: 0.8;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+}
 .game-filters {
   max-width: 100%;
-}
-
-.filter-container {
-  cursor: pointer;
   position: relative;
 }
-
-.filter-options {
-  position: absolute;
-  left:0;
-  top: 30px;
-  transition: 500ms ease-out;
-  max-height: 90px;
-  overflow: auto;
-  width: 100%;
-  text-align: center;
-
-  &::-webkit-scrollbar {
-    width: 0px;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+.game-options {
+  width: 80%;
 }
 
-  &.hide {
-    display: none;
-  }
-  &.show {
-    display: block;
-  }
-}
+
+//
+// .filter-container {
+//   cursor: pointer;
+//   position: relative;
+// }
+//
+// .filter-options {
+//   position: absolute;
+//   left:0;
+//   top: 30px;
+//   transition: 500ms ease-out;
+//   max-height: 90px;
+//   overflow: auto;
+//   width: 100%;
+//   text-align: center;
+//
+//   &::-webkit-scrollbar {
+//     width: 0px;  /* Remove scrollbar space */
+//     background: transparent;  /* Optional: just make scrollbar invisible */
+// }
+//
+//   &.hide {
+//     display: none;
+//   }
+//   &.show {
+//     display: block;
+//   }
+// }
 
 .game-box {
   overflow:hidden;
