@@ -20,7 +20,8 @@ class GameBox extends Component {
     correctAnswers: 0,
     lives: 5,
     answer: null,
-    endGame: false
+    endGame: false,
+    btnText: "Start!"
   }
 
   componentDidMount() {
@@ -39,6 +40,9 @@ class GameBox extends Component {
   }
 
   startIntervalHandler = () => {
+    this.setState({
+      btnText: 'Game has begun...'
+    })
     this.inputField.focus();
     // let startCountdown = () => {
     //   let countdown = this.state.countdown;
@@ -111,7 +115,7 @@ class GameBox extends Component {
         <div className="d-flex align-items-center justify-content-around">
           <p>Difficulty: {this.props.difficulty}</p>
 
-          <Button clicked={this.startIntervalHandler}  class="btn basic">Start!</Button>
+          <Button clicked={this.startIntervalHandler}  class="btn basic">{this.state.btnText}</Button>
 
           <p>Category: {this.props.category}</p>
         </div>

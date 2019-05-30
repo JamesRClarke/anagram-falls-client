@@ -10,7 +10,9 @@ const GameFilters  = (props) => {
     return selections;
   })
   const listItems = selections.map((topic) =>
-  <li key={topic}
+  <li
+    className="cursor-pointer"
+    key={topic}
     onClick={() => props.selectGameOptions(topic, 'category')}>
     {topic}</li>
   );

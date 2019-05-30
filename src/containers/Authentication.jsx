@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 
 import Aux from '../hoc/Aux'
 
-
 import Input from '../components/UI/Input/Input';
 import Divider from '../components/UI/Divider/Divider';
 import Button from '../components/UI/Button/Button';
