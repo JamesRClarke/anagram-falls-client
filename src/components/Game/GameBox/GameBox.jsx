@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import Anagram from './Anagram/Anagram';
-import Button from '../../UI/Button/Button'
+// import Button from '../../UI/Button/Button'
 // import CountDown from './CountDown/CountDown';
 import Aux from '../../../hoc/Aux';
 
@@ -21,7 +21,7 @@ class GameBox extends Component {
     lives: 5,
     answer: null,
     endGame: false,
-    btnText: "Start!"
+    gameInProgress: false
   }
 
   componentDidMount() {
@@ -41,7 +41,7 @@ class GameBox extends Component {
 
   startIntervalHandler = () => {
     this.setState({
-      btnText: 'Game has begun...'
+      gameInProgress: true
     })
     this.inputField.focus();
     // let startCountdown = () => {
@@ -93,35 +93,38 @@ class GameBox extends Component {
     let comparisonArray = this.state.anagramComponents;
     for (let i = 0; i <= comparisonArray.length; i++) {
       if (answer  === comparisonArray[i] ) {
+        setTimeout(() => {comparisonArray.splice(i, 1)}, 2000);
         this.setState({
           inputValue: '',
           answer: answer,
-          correctAnswers: this.state.correctAnswers + 1
+          correctAnswers: this.state.correctAnswers + 1,
+          comparisonArray: comparisonArray
         })
-        setTimeout(() => {comparisonArray.splice(i,1)}, 3000)
-        return true;
       }
-
       this.setState({
         inputValue: '',
       })
     }
   }
 
-
   render() {
     return (
-      <Aux>
-        <div className="d-flex align-items-center justify-content-around">
-          <p>Difficulty: {this.props.difficulty}</p>
-
-          <Button clicked={this.startIntervalHandler}  class="btn basic">{this.state.btnText}</Button>
-
-          <p>Category: {this.props.category}</p>
-        </div>
+      <Fragment>
+          <div className="row">
+            <p className="col-6 col-md-3">Difficulty: {this.props.difficulty}</p>
+            <p className="col-6 col-md-3">Category: {this.props.category}</p>
+            <p className="col-6 col-md-3">Lives: {this.state.lives}</p>
+            <p className="col-6 col-md-3">Score: {this.state.correctAnswers}</p>
+          </div>
 
 
         <div ref={ (gameBox) => this.gameBox = gameBox} className="game-box">
+          { !this.state.gameInProgress ?
+            <div className="start-text">
+              <h3 className="inline-text-link" onClick={this.startIntervalHandler}>Start</h3>
+            </div>
+            : null
+          }
 
           {this.state.anagramComponents.map((component) => {
             return(
@@ -135,28 +138,24 @@ class GameBox extends Component {
             )
           })}
 
-          <div ref={ (inputBox) => this.inputBox = inputBox} className="game-answer d-flex justify-content-center align-items-center">
-            <div className="mx-5">
-              <p>Lives: {this.state.lives}</p>
-            </div>
-            <div className="mx-5">
+          <div ref={(inputBox) => this.inputBox = inputBox} className="game-answer d-flex flex-column flex-md-row justify-content-center align-items-center">
+
+            <div className="mx-2 mx-md-5">
               <form onSubmit={this.anagramChecker}>
                 <input
                   ref={ (inputField) => this.inputField = inputField}
                   type="text"
                   value={this.state.inputValue} onChange={this.handleChange} />
-
                 <input style={{display: 'none'}} type="submit" value="Submit" />
-
               </form>
             </div>
-            <div className="mx-5">
-              <p>Score: {this.state.correctAnswers}</p>
-            </div>
+
+
+
           </div>
 
         </div>
-      </Aux>
+      </Fragment>
     )
   }
 }

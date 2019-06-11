@@ -1,5 +1,5 @@
 .game-container {
-  height: 90vh;
+  height: 88vh;
 }
 
 
@@ -9,55 +9,17 @@ input {
   }
 }
 
+.game-filters {
+  max-width: 100%;
+}
+
 .selection-box {
-  width: 22%;
-  position: fixed;
-  top: 15%;
-  right: 0;
-  transform: translateZ(0);
   background: $color-blue;
-  opacity: 0.8;
   color: white;
   font-weight: bold;
   text-transform: capitalize;
 }
-.game-filters {
-  max-width: 100%;
-  position: relative;
-}
-.game-options {
-  width: 80%;
-}
 
-
-//
-// .filter-container {
-//   cursor: pointer;
-//   position: relative;
-// }
-//
-// .filter-options {
-//   position: absolute;
-//   left:0;
-//   top: 30px;
-//   transition: 500ms ease-out;
-//   max-height: 90px;
-//   overflow: auto;
-//   width: 100%;
-//   text-align: center;
-//
-//   &::-webkit-scrollbar {
-//     width: 0px;  /* Remove scrollbar space */
-//     background: transparent;  /* Optional: just make scrollbar invisible */
-// }
-//
-//   &.hide {
-//     display: none;
-//   }
-//   &.show {
-//     display: block;
-//   }
-// }
 
 .game-box {
   overflow:hidden;
@@ -65,6 +27,14 @@ input {
   max-width: 100%;
   background: $color-grey-dark;
   height: 100%;
+
+  .start-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: $color-white;
+    transform: translate(-50%, -50%);
+  }
 
 
   .game-anagram {
@@ -75,8 +45,8 @@ input {
 
     &.correct-answer {
       color: $color-green;
-      visibility: hidden;
       opacity: 0;
+      // transition: opacity 2s ease-out;
       transition: visibility 0s 1s, opacity 1s;
     }
 

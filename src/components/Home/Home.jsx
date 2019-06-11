@@ -24,7 +24,7 @@ class About extends Component {
         <Aux>
           <p>First time?<br></br> Don't panic, we've all been there...</p>
           <p>Its a simple game, with anagrams to solve, lives to lose, high scores to beat whats not to love ? </p>
-          <p>You seem smart, best to read <Link className="inline-text-link" to="/about">how to play </Link>first, unless your confident then jump <Link className="inline-text-link" to="/game">straight in.</Link></p>
+          <p>You seem smart, best to read <Link className="inline-text-link" to="/about">how to play </Link>first, unless you're confident then jump <Link className="inline-text-link" to="/game">straight in.</Link></p>
         </Aux>
       );
     } else {
@@ -44,11 +44,11 @@ class About extends Component {
           <div className="row my-4">
 
             <div className="col-12 col-md-6">
-              <h5 onClick={() => this.chooseStatus('virgin', 'pro')} className={`inline-text-link ${this.state.virgin ? `active` : null }`}>Anagram Falls virgin</h5>
+              <h5 onClick={() => this.chooseStatus('virgin', 'pro')} className={`inline-text-link ${this.state.virgin ? `active` : null }`}>Anagram Falls Virgin</h5>
             </div>
 
             <div className="col-12 col-md-6">
-              <h5 onClick={() => this.chooseStatus('pro', 'virgin')} className={`inline-text-link ${this.state.pro ? `active` : null }`}>Anagram Falls proffesional </h5>
+              <h5 onClick={() => this.chooseStatus('pro', 'virgin')} className={`inline-text-link ${this.state.pro ? `active` : null }`}>Anagram Falls Professional </h5>
             </div>
 
           </div>

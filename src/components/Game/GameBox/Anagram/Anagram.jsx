@@ -7,15 +7,17 @@ class Anagram extends Component {
     this.state = {
       anagram: this.anagramCreator(this.props.anagram),
       anagramPosTop: -35,
-      anagramPosXY:  Math.ceil((Math.random() * (this.props.playingWidth - 90))),
-      fallenAnswer: false
+      anagramPosXY:  Math.ceil((Math.random() * (this.props.playingWidth - 100))),
+      fallenAnswer: false,
+      score: 100
     }
   }
 
 
   moveAnagram = () => {
-    if(this.state.anagramPosTop <= this.props.playingHeight) {
+    if(this.state.anagramPosTop <= this.props.playingHeight - 5) {
       this.setState({
+        score: this.state.score - 10,
         anagramPosTop: this.state.anagramPosTop + this.props.difficulty.marginDrop
       })
     } else {
@@ -45,7 +47,6 @@ class Anagram extends Component {
 
       anagramGenerated = anagramGenerated + word;
     }
-
     return anagramGenerated;
   }
 

@@ -7,7 +7,7 @@ const navigationItems = (props) => {
   const navItems  = [
 
     {
-      name: 'Lets Play!',
+      name: 'Game',
       link: '/game',
       order: 1
     },
