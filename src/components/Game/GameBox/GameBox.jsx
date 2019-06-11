@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Anagram from './Anagram/Anagram';
 // import Button from '../../UI/Button/Button'
 // import CountDown from './CountDown/CountDown';
-import Aux from '../../../hoc/Aux';
+
 
 import anagramDirectory from '../../../assets/anagrams.json';
 import difficultySettings from '../../../assets/difficultySettings.json';

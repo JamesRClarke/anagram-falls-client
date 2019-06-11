@@ -11,13 +11,13 @@ import form from '../assets/formConfig.json';
 
 class Authentication extends Component {
 
-  checkForPage = () => {
-    return this.props.location.pathname.slice(1);
+  state = {
+    formData: this.checkForPage() === 'register' ? { ...form.register } : { ...form.signIn },
+    formIsValid: false
   }
 
-  state = {
-    formData: this.checkForPage() === 'register' ?  {...form.register} : {...form.signIn},
-    formIsValid: false
+  checkForPage = () => {
+    return this.props.location.pathname.slice(1);
   }
 
   sendForm = ( event ) => {
